@@ -171,6 +171,7 @@ def use_pytest(session):
         "--cov-fail-under=96",
         "--cov-report=term",
         "--cov-report=html",
+        "--cov-report=xml",
         "--junit-xml=responsive-data-junit.xml",
         env=ENV,
     )
