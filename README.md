@@ -1,2 +1,12 @@
-# responsive-data
-changing data objects to be responsive on change
+# Welcome
+
+## Requirements
+
+ - Python installed (recommended: Python >= 3.10)
+ - Installed **nox** with `pip install nox`
+
+## Quickstart
+
+```
+nox
+```

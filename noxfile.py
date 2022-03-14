@@ -117,6 +117,7 @@ def use_radon(session):
     args = session.posargs or LOCATIONS
     session.install("radon")
     session.run("radon", "cc", "--min=B", "--total-average", *args, env=ENV)
+    session.run("radon", "mi", "-s", *args, env=ENV)
 
 
 @nox.session
