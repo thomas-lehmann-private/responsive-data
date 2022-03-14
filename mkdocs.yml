@@ -1,0 +1,23 @@
+site_name: reponsive-data
+
+nav:
+  - index.md
+  - subject-observer.md
+  - the-build-process.md
+
+theme:
+  name: "material"
+
+markdown_extensions:
+  - pymdownx.magiclink
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - mkdocstrings
+  - mkdocs-jupyter
+  - autolinks

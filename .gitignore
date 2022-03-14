@@ -1,0 +1,10 @@
+__pycache__/
+.ipynb_checkpoints/
+site/
+*-junit.xml
+html/
+htmlcov/
+.nox/
+.coverage
+.pytest_cache/
+.benchmarks/
