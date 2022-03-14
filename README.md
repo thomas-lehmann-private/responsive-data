@@ -6,6 +6,8 @@
 
 [![build](https://github.com/thomas-lehmann-private/responsive-data/actions/workflows/build-action.yml/badge.svg)](https://github.com/thomas-lehmann-private/responsive-data/actions)
 [![CodeFactor](https://www.codefactor.io/repository/github/thomas-lehmann-private/responsive-data/badge)](https://www.codefactor.io/repository/github/thomas-lehmann-private/responsive-data)
+[![CodeScene Code Health](https://codescene.io/projects/24499/status-badges/code-health)](https://codescene.io/projects/24499)
+
 
 ## Requirements
 
