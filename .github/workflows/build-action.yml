@@ -1,4 +1,4 @@
-name: github-build-action
+name: build-action
 on: [push]
 jobs:
   run-maven-build:
