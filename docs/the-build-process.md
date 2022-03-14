@@ -111,6 +111,7 @@ def use_radon(session):
    however you can overwrite those by specifying `--` after a session and then
    specifying the files you want (example: `nox -s use_radon -- noxfile.py`)
 
+
 ## Static Code Analysis with bandit
 
  ```py linenums="1"
@@ -132,6 +133,28 @@ def use_bandit(session):
  - The analysis will be done for all files and folders specified in `LOCATIONS`; 
    however you can overwrite those by specifying `--` after a session and then
    specifying the files you want (example: `nox -s use_bandit -- noxfile.py`)
+
+## Static Code Analysis with pip-audit
+
+
+```
+@nox.session
+@nox.parametrize("python", PYTHON_VERSIONS)
+def use_audit(session):
+    """Check vulnerations in used 3rd party libraries.
+
+    Args:
+        session(Session): nox session.
+    """
+    session.install("pip-audit")
+    session.run("pip-audit", "-r", "requirements.txt", env=ENV)
+```
+
+ - The required package is **pip-audit** (see links at the bottom for documentation)
+ - It's a tool to find issues with of the given dependencies.
+ - The analysis will be done for all files and folders specified in `LOCATIONS`; 
+   however you can overwrite those by specifying `--` after a session and then
+   specifying the files you want (example: `nox -s use_audit -- noxfile.py`)
 
 
 ## Generate the HTML Documentation
