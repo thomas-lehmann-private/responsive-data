@@ -63,6 +63,28 @@ def use_flake8(session):
    however you can overwrite those by specifying `--` after a session and then
    specifying the files you want (example: `nox -s use_flake8 -- noxfile.py`)
 
+## Static Code Analysis with pycodestyle
+
+```py linenums="1"
+@nox.session
+@nox.parametrize("python", PYTHON_VERSIONS)
+def use_pycodestyle(session):
+    """Checking code style.
+
+    Args:
+        session(Session): nox session.
+    """
+    args = session.posargs or LOCATIONS
+    session.install("pycodestyle")
+    session.run("pycodestyle", "--max-line-length=100", *args, env=ENV)
+```
+
+ - The required package is **pycodestyle** (see links at the bottom for documentation)
+ - It's a very well known addition to the pylint tool.
+ - The analysis will be done for all files and folders specified in `LOCATIONS`; 
+   however you can overwrite those by specifying `--` after a session and then
+   specifying the files you want (example: `nox -s use_pycodestyle -- noxfile.py`)
+
 ## Static Code Analysis with pylint
 
 ```py linenums="1"
@@ -238,3 +260,4 @@ def use_pytest(session):
  - https://github.com/trailofbits/pip-audit
  - https://radon.readthedocs.io/en/latest/
  - https://docs.pytest.org/en/7.1.x/
+ - https://pytest-benchmark.readthedocs.io/en/latest/

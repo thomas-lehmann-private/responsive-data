@@ -4,6 +4,7 @@ nav:
   - index.md
   - subject-observer.md
   - the-build-process.md
+  - how-to-write-performance-tests.md
 
 theme:
   name: "material"
