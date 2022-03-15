@@ -195,6 +195,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../responsive-data-handling/" class="md-nav__link">
+        Responsive Data Handling
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../subject-observer/" class="md-nav__link">
         The subject / observer pattern
       </a>
@@ -491,7 +506,7 @@ the source code is following:</p>
 <a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="n">args</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">posargs</span> <span class="ow">or</span> <span class="n">LOCATIONS</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;--line-length=100&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 <ul>
