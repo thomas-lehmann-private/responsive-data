@@ -25,10 +25,11 @@ THE SOFTWARE.
 # pylint: disable=too-few-public-methods
 from typing import Any
 
+from responsive.observer import Observer
 from responsive.subject import Subject
 
 
-class Wrapper(Subject):
+class Wrapper(Subject, Observer):
     """Wrapper for an object."""
 
     def __init__(self, obj):
@@ -39,9 +40,12 @@ class Wrapper(Subject):
     def __setattr__(self, name: str, value: Any) -> None:
         """Creating attribute 'obj' or changing one of its attributes."""
         if "obj" in self.__dict__:
-            old_value = self.obj.__dict__[name]
-            self.obj.__dict__[name] = value
-            self.notify(attribute_name=name, old_value=old_value, new_value=value)
+            if isinstance(self.obj, Wrapper):
+                self.obj.__setattr__(name, value)
+            else:
+                old_value = self.obj.__dict__[name]
+                self.obj.__dict__[name] = value
+                self.notify(attribute_name=name, old_value=old_value, new_value=value)
         else:
             super().__setattr__(name, value)
 
@@ -54,7 +58,37 @@ class Wrapper(Subject):
         Returns:
             value of the attribute.
         """
+        if isinstance(self.obj, Wrapper):
+            return self.obj.__getattr__(name)
         return self.obj.__dict__[name]
+
+    def update(self, subject: object, *args: Any, **kwargs: Any):
+        """Called when related subject has changed.
+
+        Args:
+            subject (object): the one who does the notification.
+            *args (Any): optional positional arguments
+            **kwargs (Any): optional key/value arguments
+        """
+        self.notify(*args, **kwargs)
+
+
+def __apply_wrapper(root: object, parent: object) -> None:
+    """Modify recursive object to be responsive.
+
+    Args:
+        root (object): the main object that should be responsive
+        parant (object): the current parent in the hierachy (None if root)
+    """
+    current = parent if parent is not None else root
+    for key, value in current.__dict__.items():
+        current_type = type(value)
+        if str(current_type).startswith("<class"):
+            if not current_type.__module__ == "builtins":
+                __apply_wrapper(root, value)
+                wrapped_value = Wrapper(value)
+                wrapped_value.add_observer(root)
+                current.__dict__[key] = wrapped_value
 
 
 def make_responsive(obj: object) -> object:
@@ -66,5 +100,6 @@ def make_responsive(obj: object) -> object:
     Returns:
         Modified object.
     """
-    wrapped_object = Wrapper(obj)
-    return wrapped_object
+    wrapped_value = Wrapper(obj)
+    __apply_wrapper(wrapped_value, None)
+    return wrapped_value

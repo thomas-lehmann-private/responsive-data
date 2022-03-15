@@ -2,6 +2,7 @@ site_name: reponsive-data
 
 nav:
   - index.md
+  - responsive-data-handling.md
   - subject-observer.md
   - the-build-process.md
   - how-to-write-performance-tests.md

@@ -39,3 +39,34 @@ class Observer:
             **kwargs (Any): optional key/value arguments
         """
         raise NotImplementedError()
+
+
+class DefaultObserver(Observer):
+    """A simple observer class."""
+
+    def __init__(self):
+        """Initializing empty list of reveived updates."""
+        super().__init__()
+        self.__updates = []
+
+    def update(self, subject: object, *args: Any, **kwargs: Any) -> None:
+        """Called when the subject has been changed.
+
+        Args:
+            subject (object): the one who does the notification.
+            *args (Any): optional positional arguments
+            **kwargs (Any): optional key/value arguments
+        """
+        self.__updates.append((subject, args, kwargs))
+
+    def __iter__(self):
+        """Allows iterating over the updates of this observer."""
+        return iter(self.__updates)
+
+    def clear(self):
+        """Delete all recently updated."""
+        self.__updates.clear()
+
+    def get_count_updates(self):
+        """Provide number of updates."""
+        return len(self.__updates)

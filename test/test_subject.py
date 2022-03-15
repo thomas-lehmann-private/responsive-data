@@ -22,9 +22,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
-from test.observers import DefaultTestObserver
 from unittest import TestCase
 
+from responsive.observer import DefaultObserver
 from responsive.subject import Subject
 
 
@@ -33,15 +33,15 @@ class SubjectTest(TestCase):
 
     def test_notify_single_observer(self):
         """Testing a single observer registration."""
-        observer = DefaultTestObserver()
+        observer = DefaultObserver()
         subject = Subject()
         subject.add_observer(observer)
         subject.notify()
-        self.assertEqual(observer.get_count_notifications(), 1)
+        self.assertEqual(observer.get_count_updates(), 1)
 
     def test_notify_multiple_observer(self):
         """Testing a multiple observer registration"""
-        observers = [DefaultTestObserver() for _ in range(1000)]
+        observers = [DefaultObserver() for _ in range(1000)]
         subject = Subject()
 
         for observer in observers:
@@ -50,4 +50,4 @@ class SubjectTest(TestCase):
         subject.notify()
 
         for observer in observers:
-            self.assertEqual(observer.get_count_notifications(), 1)
+            self.assertEqual(observer.get_count_updates(), 1)

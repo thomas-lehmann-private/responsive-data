@@ -22,14 +22,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
-from test.observers import DefaultTestObserver
-
+from responsive.observer import DefaultObserver
 from responsive.subject import Subject
 
 
 def test_subject_observer_performance(benchmark):
     """Testing simple notification process with many observers."""
-    observers = [DefaultTestObserver() for _ in range(1000000)]
+    observers = [DefaultObserver() for _ in range(1000000)]
     subject = Subject()
 
     for observer in observers:

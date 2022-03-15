@@ -24,7 +24,7 @@ def use_black(session):
     """
     args = session.posargs or LOCATIONS
     session.install("black")
-    session.run("black", *args, env=ENV)
+    session.run("black", "--line-length=100", *args, env=ENV)
 ```
 
  - The required package is **black** (see links at the bottom for documentation).
