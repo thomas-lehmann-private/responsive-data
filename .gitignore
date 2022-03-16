@@ -9,3 +9,7 @@ htmlcov/
 .coverage
 .pytest_cache/
 .benchmarks/
+dist/
+build/
+*.pyc
+*.egg-info/

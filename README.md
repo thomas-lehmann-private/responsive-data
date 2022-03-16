@@ -19,3 +19,10 @@
 ```
 nox
 ```
+
+For basic usage of the library please read the document (see documentation badge).
+
+ ## Interesting Links
+
+  - https://test.pypi.org/project/responsive-data/
+

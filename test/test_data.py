@@ -38,7 +38,6 @@ class SomeOtherData:
         """Initialize test data."""
         self.some_str_2 = ""
         self.some_int_2 = 0
-        self.some_list_2 = []
 
 
 class SomeData:
@@ -48,7 +47,6 @@ class SomeData:
         """Initialize test data."""
         self.some_str = ""
         self.some_int = 0
-        self.some_list = []
         self.some_other_data = SomeOtherData()
 
 
@@ -87,6 +85,15 @@ class DataTest(TestCase):
         self.assert_notification(
             notifications[3], some_data, (), self.create_kwargs("some_int_2", 0, 87654321)
         )
+
+    def test_set_and_get_value(self):
+        """Test set and get of a value."""
+        some_data = make_responsive(SomeData())
+        some_data.some_str = "hello world 1"
+        self.assertEqual(some_data.some_str, "hello world 1")
+
+        some_data = make_responsive({"some_str": "hello world 2"})
+        self.assertEqual(some_data.some_str, "hello world 2")
 
     @staticmethod
     def create_kwargs(attribute_name: str, old_value: Any, new_value: Any) -> dict:

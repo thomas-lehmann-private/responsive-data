@@ -30,18 +30,49 @@ from responsive.subject import Subject
 
 
 class Wrapper(Subject, Observer):
-    """Wrapper for an object."""
+    """Wrapper for an object.
 
-    def __init__(self, obj):
-        """Initialize wrapper."""
+    Example:
+
+        >>> from responsive.observer import DefaultObserver
+        >>> observer = DefaultObserver()
+        >>> book = Wrapper({"author": "", "title": ""})
+        >>> book.add_observer(observer)
+        >>> book.author = "Raymond Chandler"
+        >>> book.title = "The Big Sleep"
+        >>> observer.get_count_updates()
+        2
+    """
+
+    def __init__(self, obj: object):
+        """Initialize wrapper.
+
+        Args:
+            obj (objec): object to wrap.
+        """
         super().__init__()
         self.obj = obj
 
+    def __repr__(self) -> str:
+        """Get string representation of wrapped data.
+
+        Returns:
+            string representation of wrapped data.
+        """
+        return f"{self.obj}"
+
     def __setattr__(self, name: str, value: Any) -> None:
-        """Creating attribute 'obj' or changing one of its attributes."""
+        """Creating attribute 'obj' or changing one of its attributes.
+
+        Args:
+            name  (str): name of the attribute.
+            value (Any): value of the attribute.
+        """
         if "obj" in self.__dict__:
-            if isinstance(self.obj, Wrapper):
-                self.obj.__setattr__(name, value)
+            if isinstance(self.obj, dict):
+                old_value = self.obj[name]
+                self.obj[name] = value
+                self.notify(attribute_name=name, old_value=old_value, new_value=value)
             else:
                 old_value = self.obj.__dict__[name]
                 self.obj.__dict__[name] = value
@@ -58,8 +89,9 @@ class Wrapper(Subject, Observer):
         Returns:
             value of the attribute.
         """
-        if isinstance(self.obj, Wrapper):
-            return self.obj.__getattr__(name)
+        if isinstance(self.obj, dict):
+            return self.obj[name]
+
         return self.obj.__dict__[name]
 
     def update(self, subject: object, *args: Any, **kwargs: Any):
@@ -81,14 +113,22 @@ def __apply_wrapper(root: object, parent: object) -> None:
         parant (object): the current parent in the hierachy (None if root)
     """
     current = parent if parent is not None else root
-    for key, value in current.__dict__.items():
+    the_dict = None
+
+    if isinstance(current, Wrapper):
+        __apply_wrapper(current, current.obj)
+        return
+
+    the_dict = current if isinstance(current, dict) else current.__dict__
+
+    for key, value in the_dict.items():
         current_type = type(value)
         if str(current_type).startswith("<class"):
             if not current_type.__module__ == "builtins":
-                __apply_wrapper(root, value)
                 wrapped_value = Wrapper(value)
+                __apply_wrapper(root, wrapped_value)
                 wrapped_value.add_observer(root)
-                current.__dict__[key] = wrapped_value
+                the_dict[key] = wrapped_value
 
 
 def make_responsive(obj: object) -> object:

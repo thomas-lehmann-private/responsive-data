@@ -8,6 +8,27 @@ Please keep in mind that this are the goals:
  - that the build does fail when one of the tool does fail
  - that every developer does use the build process **before** doing a commit.
 
+## Default sessions
+
+```py linenums="1"
+#: All the session which should run by default
+nox.options.sessions = [
+    "use_black",
+    "use_flake8",
+    "use_pycodestyle",
+    "use_pylint",
+    "use_bandit",
+    "use_radon",
+    "use_audit",
+    "use_mkdocs",
+    "use_pytest",
+    "create_packages",
+```
+
+The main reason for this is that the deploying of the packages is done only
+when intending to deploy a release. The only way to exclude that session is
+to define which sessions should run by default when executing `nox`.
+
 ## Automatic Code Formatting
 
 Using the **nox** mechanism the function to automatically re-format
@@ -16,11 +37,11 @@ the source code is following:
 ```py linenums="1"
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_black(session):
+def use_black(session: nox.Session) -> None:
     """Reformat the code.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
     session.install("black")
@@ -38,11 +59,11 @@ def use_black(session):
 ```py linenums="1"
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_flake8(session):
+def use_flake8(session: nox.Session) -> None:
     """Checking different code issues.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
     session.install("flake8", "mccabe", "flake8-import-order", "flake8-bugbear")
@@ -68,11 +89,11 @@ def use_flake8(session):
 ```py linenums="1"
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_pycodestyle(session):
+def use_pycodestyle(session: nox.Session) -> None:
     """Checking code style.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
     session.install("pycodestyle")
@@ -90,11 +111,11 @@ def use_pycodestyle(session):
 ```py linenums="1"
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_pylint(session):
+def use_pylint(session: nox.Session) -> None:
     """Checking code style.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
     session.install("pylint", "nox")
@@ -113,11 +134,11 @@ def use_pylint(session):
 ```py linenums="1"
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_radon(session):
+def use_radon(session: nox.Session) -> None:
     """Check code complexity.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
     session.install("radon")
@@ -139,11 +160,11 @@ def use_radon(session):
  ```py linenums="1"
  @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_bandit(session):
+def use_bandit(session: nox.Session) -> None:
     """Checking code vulnerations.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
     session.install("bandit")
@@ -162,11 +183,11 @@ def use_bandit(session):
 ```
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_audit(session):
+def use_audit(session: nox.Session) -> None:
     """Check vulnerations in used 3rd party libraries.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     session.install("pip-audit")
     session.run("pip-audit", "-r", "requirements.txt", env=ENV)
@@ -187,11 +208,11 @@ is following:
 ```py linenums="1"
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_mkdocs(session):
+def use_mkdocs(session: nox.Session) -> None:
     """Creating HTML documentation.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     session.install(
         "mkdocs",
@@ -213,11 +234,11 @@ def use_mkdocs(session):
 ```py linenums="1"
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_pytest(session):
+def use_pytest(session: nox.Session) -> None:
     """Running unittests.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     session.install("pytest", "pytest-cov", "pytest-random-order", "pytest-benchmark")
     session.install("-r", "requirements.txt")
@@ -245,19 +266,73 @@ def use_pytest(session):
  - A JUnit compatible XML is generate.
  - The build does fail when a test does fail or when the code coverage is below expected limit.
 
+## Creating the packages
+
+```py linenums="1"
+@nox.session
+@nox.parametrize("python", PYTHON_VERSIONS)
+def create_packages(session: nox.Session) -> None:
+    """Creating packages.
+
+    Args:
+        session (nox.Session): nox session.
+    """
+    session.run("python", "setup.py", "sdist", "bdist_wheel")
+```
+
+ - with **sdist** you generate the source package.
+ - with **bdist_wheel** you generate the binary package ensuring all dependencies are installed too (when given).
+ - you will find the packages in folder **dist**.
+
+## Deploying the packages
+
+```py linenums="1"
+@nox.session
+@nox.parametrize("python", PYTHON_VERSIONS)
+def deploy_packages(session: nox.Session) -> None:
+    """Deploying packages.
+
+    Args:
+        session (nox.Session): nox session.
+    """
+    session.install("twine")
+    session.run("twine", "upload", "--repository-url=https://test.pypi.org/legacy/", "dist/*")
+```
+
+ - the given setup does upload the packages to the PYPI test instance (will be changed later on)
+ - you have to ensure that the environment variables **TWINE_USERNAME** and **TWINE_PASSWORD** are set accordingly;
+   the username is the name of the token you have specified in the PYPI instance and the password is the token
+   that has been generated by the PYPI instance for you.
+ - those variables have to be set into the secrets section of the repository at Github that the Github action are
+   able to inject them into the build process.
+
 ## Links
 
+### The build tool itself
  - https://nox.thea.codes/en/stable/
+
+### Code formatting
  - https://black.readthedocs.io/en/stable/
+
+
+### Static code analysis
  - https://flake8.pycqa.org/en/latest/
  - https://github.com/PyCQA/flake8-import-order
  - https://github.com/PyCQA/flake8-bugbear
  - https://pycodestyle.pycqa.org/en/latest/intro.html
  - https://bandit.readthedocs.io/en/latest/
  - https://pylint.pycqa.org/en/latest/
- - https://www.mkdocs.org
- - https://docs.pytest.org/en/7.0.x/
  - https://github.com/trailofbits/pip-audit
  - https://radon.readthedocs.io/en/latest/
+
+### Documentation
+ - https://www.mkdocs.org
+
+### Unittesting and Benchmarking
  - https://docs.pytest.org/en/7.1.x/
  - https://pytest-benchmark.readthedocs.io/en/latest/
+
+
+### Packages and Deployment
+ - https://packaging.python.org/en/latest/tutorials/packaging-projects/
+ - https://realpython.com/pypi-publish-python-package/

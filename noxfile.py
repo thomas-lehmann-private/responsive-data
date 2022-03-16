@@ -30,17 +30,32 @@ ENV = {"PYTHONDONTWRITEBYTECODE": "1"}
 #: Python version(s) to use for testing
 PYTHON_VERSIONS = ["3.10"]
 
-#: source code locations
+#: Source code locations
 LOCATIONS = "responsive", "noxfile.py", "test"
+
+#: All the session which should run by default
+nox.options.sessions = [
+    "use_black",
+    "use_flake8",
+    "use_pycodestyle",
+    "use_pylint",
+    "use_bandit",
+    "use_radon",
+    "use_vulture",
+    "use_audit",
+    "use_mkdocs",
+    "use_pytest",
+    "create_packages",
+]
 
 
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_black(session):
+def use_black(session: nox.Session) -> None:
     """Reformat the code.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
     session.install("black")
@@ -49,14 +64,14 @@ def use_black(session):
 
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_flake8(session):
+def use_flake8(session: nox.Session) -> None:
     """Checking different code issues.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
-    session.install("flake8", "mccabe", "flake8-import-order", "flake8-bugbear")
+    session.install("flake8", "mccabe", "flake8-import-order", "flake8-bugbear", "flake8-colors")
     session.run(
         "flake8",
         "--max-line-length=100",
@@ -69,11 +84,11 @@ def use_flake8(session):
 
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_pycodestyle(session):
+def use_pycodestyle(session: nox.Session) -> None:
     """Checking code style.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
     session.install("pycodestyle")
@@ -82,11 +97,11 @@ def use_pycodestyle(session):
 
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_pylint(session):
+def use_pylint(session: nox.Session) -> None:
     """Checking code style.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
     session.install("pylint", "nox")
@@ -95,11 +110,11 @@ def use_pylint(session):
 
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_bandit(session):
+def use_bandit(session: nox.Session) -> None:
     """Checking code vulnerations.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
     session.install("bandit")
@@ -108,11 +123,11 @@ def use_bandit(session):
 
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_radon(session):
+def use_radon(session: nox.Session) -> None:
     """Check code complexity.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
     session.install("radon")
@@ -122,11 +137,24 @@ def use_radon(session):
 
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_audit(session):
-    """Check vulnerations in used 3rd party libraries.
+def use_vulture(session: nox.Session) -> None:
+    """Check unused code.
 
     Args:
         session(Session): nox session.
+    """
+    args = session.posargs or LOCATIONS
+    session.install("vulture")
+    session.run("vulture", "--exclude=noxfile.py", *args, env=ENV)
+
+
+@nox.session
+@nox.parametrize("python", PYTHON_VERSIONS)
+def use_audit(session: nox.Session) -> None:
+    """Check vulnerations in used 3rd party libraries.
+
+    Args:
+        session (nox.Session): nox session.
     """
     session.install("pip-audit")
     session.run("pip-audit", "-r", "requirements.txt", env=ENV)
@@ -134,11 +162,11 @@ def use_audit(session):
 
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_mkdocs(session):
+def use_mkdocs(session: nox.Session) -> None:
     """Creating HTML documentation.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
     session.install(
         "mkdocs",
@@ -153,13 +181,15 @@ def use_mkdocs(session):
 
 @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_pytest(session):
+def use_pytest(session: nox.Session) -> None:
     """Running unittests.
 
     Args:
-        session(Session): nox session.
+        session (nox.Session): nox session.
     """
-    session.install("pytest", "pytest-cov", "pytest-random-order", "pytest-benchmark")
+    session.install(
+        "pytest", "pytest-cov", "pytest-random-order", "pytest-benchmark", "pytest-sugar"
+    )
     session.install("-r", "requirements.txt")
     session.run(
         "pytest",
@@ -175,3 +205,26 @@ def use_pytest(session):
         "--junit-xml=responsive-data-junit.xml",
         env=ENV,
     )
+
+
+@nox.session
+@nox.parametrize("python", PYTHON_VERSIONS)
+def create_packages(session: nox.Session) -> None:
+    """Creating packages.
+
+    Args:
+        session (nox.Session): nox session.
+    """
+    session.run("python", "setup.py", "sdist", "bdist_wheel")
+
+
+@nox.session
+@nox.parametrize("python", PYTHON_VERSIONS)
+def deploy_packages(session: nox.Session) -> None:
+    """Deploying packages.
+
+    Args:
+        session (nox.Session): nox session.
+    """
+    session.install("twine")
+    session.run("twine", "upload", "--repository-url=https://test.pypi.org/legacy/", "dist/*")
