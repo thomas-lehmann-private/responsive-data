@@ -306,6 +306,24 @@ def deploy_packages(session: nox.Session) -> None:
  - those variables have to be set into the secrets section of the repository at Github that the Github action are
    able to inject them into the build process.
 
+## Cleanup
+
+```py linenums="1"
+@nox.session(python=False)
+def clean(session: nox.Session) -> None:
+    """Cleanup temporary files and folders.
+
+    Args:
+        session (nox.Session): nox session.
+    """
+    session.run("git", "clean", "-fdX")
+```
+
+ - Using git it is very easy to remove all temporary files and folders.
+ - The **X** is necessary to include the files and folders defined in `.gitignore`
+ - The `python=False` disables the creation of a virtual environment.
+ - Of course the **clean** session is not in the list of the default sessions.
+
 ## Links
 
 ### The build tool itself

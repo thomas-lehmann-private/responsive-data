@@ -228,3 +228,13 @@ def deploy_packages(session: nox.Session) -> None:
     """
     session.install("twine")
     session.run("twine", "upload", "--repository-url=https://test.pypi.org/legacy/", "dist/*")
+
+
+@nox.session(python=False)
+def clean(session: nox.Session) -> None:
+    """Cleanup temporary files and folders.
+
+    Args:
+        session (nox.Session): nox session.
+    """
+    session.run("git", "clean", "-fdX")
