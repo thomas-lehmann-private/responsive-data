@@ -300,9 +300,9 @@ With this writing a performance test is simply writing functions like following:
 <span class="normal"><a href="#__codelineno-0-6">6</a></span>
 <span class="normal"><a href="#__codelineno-0-7">7</a></span>
 <span class="normal"><a href="#__codelineno-0-8">8</a></span>
-<span class="normal"><a href="#__codelineno-0-9">9</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span> <span class="nf">test_subject_observer_performance</span><span class="p">(</span><span class="n">benchmark</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-9">9</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span> <span class="nf">test_subject_observer_default_performance_1000</span><span class="p">(</span><span class="n">benchmark</span><span class="p">):</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="sd">&quot;&quot;&quot;Testing simple notification process with many observers.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">observers</span> <span class="o">=</span> <span class="p">[</span><span class="n">DefaultTestObserver</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)]</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">observers</span> <span class="o">=</span> <span class="p">[</span><span class="n">DefaultObserver</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)]</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="n">subject</span> <span class="o">=</span> <span class="n">Subject</span><span class="p">()</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a>
 <a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="k">for</span> <span class="n">observer</span> <span class="ow">in</span> <span class="n">observers</span><span class="p">:</span>
@@ -311,7 +311,7 @@ With this writing a performance test is simply writing functions like following:
 <a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="n">benchmark</span><span class="p">(</span><span class="n">subject</span><span class="o">.</span><span class="n">notify</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-<p>The example here does 1000000 attaching of observers to one subject;
+<p>The example here does 10000 attaching of observers to one subject;
 the notification part is the call that will be measured. You simply
 define a function with one parameter <strong>benchmark</strong> which will be
 a function that you can use to pass another function and its parameters.

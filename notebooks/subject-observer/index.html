@@ -1325,7 +1325,7 @@ Licensed under the Apache License, Version 2.0.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -1371,7 +1371,7 @@ sys.path.append('../..')</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -1387,10 +1387,10 @@ sys.path.append('../..')</div>
             </clipboard-copy>
         </div>
             <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">responsive.subject</span> <span class="kn">import</span> <span class="n">Subject</span>
-<span class="kn">from</span> <span class="nn">responsive.observer</span> <span class="kn">import</span> <span class="n">Observer</span>
+<span class="kn">from</span> <span class="nn">responsive.observer</span> <span class="kn">import</span> <span class="n">DefaultObserver</span>
 </pre></div>
 <div id="cell-2" class="clipboard-copy-txt">from responsive.subject import Subject
-from responsive.observer import Observer</div>
+from responsive.observer import DefaultObserver</div>
     
         </div>
     </div>
@@ -1406,18 +1406,18 @@ from responsive.observer import Observer</div>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now it is required to create an Observer class:</p>
+<p>Testing the subject/observer feature. The notification allows specifying no parameters, positional parameter or keyword arguments or both. It is in the responsiblity of the concrete subject to provide sufficient information to the observers. We are using a default server implementation which is - to be clear - mainly for testing and demonstration purpose.</p>
 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -1432,107 +1432,21 @@ from responsive.observer import Observer</div>
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
-
-
-<span class="k">class</span> <span class="nc">DefaultObserver</span><span class="p">(</span><span class="n">Observer</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; A simple observer class. &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Initializing empty list of reveived updates. &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__updates</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">:</span> <span class="n">Subject</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; Called when the subject has been changed. &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__updates</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">subject</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Allows iterating over the updates of this observer. &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__updates</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Delete all recently updated. &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__updates</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-</pre></div>
-<div id="cell-3" class="clipboard-copy-txt">from typing import Any
-
-
-class DefaultObserver(Observer):
-    """ A simple observer class. """
-
-    def __init__(self):
-        """ Initializing empty list of reveived updates. """
-        super().__init__()
-        self.__updates = []
-
-    def update(self, subject: Subject, *args: Any, **kwargs: Any) -> None:
-        """ Called when the subject has been changed. """
-        self.__updates.append((subject, args, kwargs))
-
-    def __iter__(self):
-        """ Allows iterating over the updates of this observer. """
-        return iter(self.__updates)
-
-    def clear(self):
-        """ Delete all recently updated. """
-        self.__updates.clear()</div>
-    
-        </div>
-    </div>
-
-</div>
-</div>
-
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Testing the subject/observer feature. The notification allows specifying no parameters, positional parameter or keyword arguments or both. It is in the responsiblity of the concrete subject to provide sufficient information to the observers.</p>
-
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-        
-        
-        <div class="CodeMirror cm-s-jupyter">
-        <div class="zeroclipboard-container">
-            <clipboard-copy for="cell-4">
-            <div>
-                <span class="notice" hidden>Copied!</span>
-                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
-                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
-                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
-                </svg>
-                </div>
-            </clipboard-copy>
-        </div>
             <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">observer</span> <span class="o">=</span> <span class="n">DefaultObserver</span><span class="p">()</span>
 <span class="n">subject</span> <span class="o">=</span> <span class="n">Subject</span><span class="p">()</span>
 <span class="n">subject</span><span class="o">.</span><span class="n">add_observer</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
-<span class="n">subject</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s1">&#39;just a test&#39;</span><span class="p">,</span> <span class="n">reason</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+<span class="n">subject</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s1">&#39;just a test&#39;</span><span class="p">,</span> <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">subject</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">observer</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">subject</span><span class="si">}</span><span class="s2"> has notified with </span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">kwargs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;subject has notified with </span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">kwargs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
-<div id="cell-4" class="clipboard-copy-txt">observer = DefaultObserver()
+<div id="cell-3" class="clipboard-copy-txt">observer = DefaultObserver()
 subject = Subject()
 subject.add_observer(observer)
-subject.notify('just a test', reason='test')
+subject.notify('just a test', reason="test")
 
 for subject, args, kwargs in observer:
-    print(f"{subject} has notified with {args} and {kwargs}")</div>
+    print(f"subject has notified with {args} and {kwargs}")</div>
     
         </div>
     </div>
@@ -1554,7 +1468,7 @@ for subject, args, kwargs in observer:
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>&lt;responsive.subject.Subject object at 0x111c979a0&gt; has notified with (&#39;just a test&#39;,) and {&#39;reason&#39;: &#39;test&#39;}
+<pre>subject has notified with (&#39;just a test&#39;,) and {&#39;reason&#39;: &#39;test&#39;}
 </pre>
 </div>
 </div>
@@ -1563,6 +1477,99 @@ for subject, args, kwargs in observer:
 
 </div>
 
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Now we change the <strong>interest</strong> of the observer and we register for the concrete interest.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-4">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">observer</span><span class="o">.</span><span class="n">set_interests</span><span class="p">({</span><span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;test2&quot;</span><span class="p">})</span>
+<span class="n">observer</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="n">subject</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s2">&quot;test1&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;it&#39;s a test&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">observer</span><span class="p">))</span>
+<span class="n">subject</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s2">&quot;test2&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;it&#39;s another test&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">observer</span><span class="p">))</span>
+</pre></div>
+<div id="cell-4" class="clipboard-copy-txt">observer.set_interests({"reason": lambda value: value == "test2"})
+observer.clear()
+
+subject.notify(reason="test1", message="it's a test")
+print(list(kwargs for _, _, kwargs in observer))
+subject.notify(reason="test2", message="it's another test")
+print(list(kwargs for _, _, kwargs in observer))</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[]
+[{&#39;reason&#39;: &#39;test2&#39;, &#39;message&#39;: &#34;it&#39;s another test&#34;}]
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>As you can see the first ouput is an empty list since that interest does not match the value for <strong>reason</strong> (see lambda function). Another possibility might be that the attribute that you are interested in was not part of the notification. The final output provides you an update since name <strong>and</strong> value did match.</p>
+<p>What is this for? Consider a book (converted into responsible data). You could develop a text widget as observer that does register once for the title and once for the name of the author. Each time you change the data the widgets would be updated. The first example at the beginning was updated on any change which is also a valid usecase but not the only one.</p>
+
+</div>
+</div>
 </div>
 </div>
 </div>
