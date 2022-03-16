@@ -1325,7 +1325,7 @@ Licensed under the Apache License, Version 2.0.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -1371,7 +1371,7 @@ sys.path.append('../..')</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -1387,26 +1387,43 @@ sys.path.append('../..')</div>
             </clipboard-copy>
         </div>
             <div class="highlight-ipynb hl-python"><pre><span></span><span class="k">class</span> <span class="nc">Author</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Initialize author name with empty name.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;String representation of an instance of this class.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Author(name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">)&quot;</span>
 
 <span class="k">class</span> <span class="nc">Book</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="n">Author</span><span class="p">()):</span>
         <span class="sd">&quot;&quot;&quot;Initialize book with empty title and author with empty name.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">Author</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">author</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;String representation of an instance of this class.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Book(title=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">, author=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">author</span><span class="si">}</span><span class="s2">)&quot;</span>
 </pre></div>
 <div id="cell-2" class="clipboard-copy-txt">class Author:
-    def __init__(self):
+    def __init__(self, name=""):
         """ Initialize author name with empty name."""
-        self.name = ""
+        self.name = name
+
+    def __repr__(self):
+        """String representation of an instance of this class."""
+        return f"Author(name={self.name})"
 
 class Book:
-    def __init__(self):
+    def __init__(self, title="", author=Author()):
         """Initialize book with empty title and author with empty name."""
-        self.title = ""
-        self.author = Author()</div>
+        self.title = title
+        self.author = author
+
+    def __repr__(self):
+        """String representation of an instance of this class."""
+        return f"Book(title={self.title}, author={self.author})"
+</div>
     
         </div>
     </div>
@@ -1433,7 +1450,7 @@ class Book:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -1495,8 +1512,8 @@ for subject, args, kwargs in observer:
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>&lt;responsive.data.Wrapper object at 0x106b10b50&gt; (&lt;responsive.data.Wrapper object at 0x106b120e0&gt;,) {&#39;attribute_name&#39;: &#39;title&#39;, &#39;old_value&#39;: &#39;&#39;, &#39;new_value&#39;: &#39;The Big Sleep&#39;}
-&lt;responsive.data.Wrapper object at 0x106b10b50&gt; (&lt;responsive.data.Wrapper object at 0x106b111b0&gt;,) {&#39;attribute_name&#39;: &#39;name&#39;, &#39;old_value&#39;: &#39;&#39;, &#39;new_value&#39;: &#39;Raymond Chandler&#39;}
+<pre>Book(title=The Big Sleep, author=Author(name=Raymond Chandler)) () {&#39;attribute_name&#39;: &#39;title&#39;, &#39;old_value&#39;: &#39;&#39;, &#39;new_value&#39;: &#39;The Big Sleep&#39;}
+Book(title=The Big Sleep, author=Author(name=Raymond Chandler)) () {&#39;attribute_name&#39;: &#39;name&#39;, &#39;old_value&#39;: &#39;&#39;, &#39;new_value&#39;: &#39;Raymond Chandler&#39;}
 </pre>
 </div>
 </div>
@@ -1505,6 +1522,18 @@ for subject, args, kwargs in observer:
 
 </div>
 
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Please note</strong>: the output of the subject (here the book) has same output because of the print which finally calls the <code>__repr__</code> method on the same reference which does not change after the notifactions are done. It would be too expensive (and complicated) to make a deep copy of the subject on each notification. The <strong>DefaultObserver</strong> is just a test oberserver; in reality it is expected that an observer does react directly on a given notification.</p>
+
+</div>
+</div>
 </div>
 </div>
 </div>

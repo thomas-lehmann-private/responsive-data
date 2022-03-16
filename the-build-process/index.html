@@ -266,6 +266,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#default-sessions" class="md-nav__link">
+    Default sessions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#automatic-code-formatting" class="md-nav__link">
     Automatic Code Formatting
   </a>
@@ -329,9 +336,71 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#creating-the-packages" class="md-nav__link">
+    Creating the packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploying-the-packages" class="md-nav__link">
+    Deploying the packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#links" class="md-nav__link">
     Links
   </a>
+  
+    <nav class="md-nav" aria-label="Links">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-build-tool-itself" class="md-nav__link">
+    The build tool itself
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-formatting" class="md-nav__link">
+    Code formatting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-code-analysis" class="md-nav__link">
+    Static code analysis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unittesting-and-benchmarking" class="md-nav__link">
+    Unittesting and Benchmarking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packages-and-deployment" class="md-nav__link">
+    Packages and Deployment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -392,6 +461,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#default-sessions" class="md-nav__link">
+    Default sessions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#automatic-code-formatting" class="md-nav__link">
     Automatic Code Formatting
   </a>
@@ -455,9 +531,71 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#creating-the-packages" class="md-nav__link">
+    Creating the packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploying-the-packages" class="md-nav__link">
+    Deploying the packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#links" class="md-nav__link">
     Links
   </a>
+  
+    <nav class="md-nav" aria-label="Links">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-build-tool-itself" class="md-nav__link">
+    The build tool itself
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-formatting" class="md-nav__link">
+    Code formatting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-code-analysis" class="md-nav__link">
+    Static code analysis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unittesting-and-benchmarking" class="md-nav__link">
+    Unittesting and Benchmarking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#packages-and-deployment" class="md-nav__link">
+    Packages and Deployment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -483,9 +621,7 @@
 <li>that the build does fail when one of the tool does fail</li>
 <li>that every developer does use the build process <strong>before</strong> doing a commit.</li>
 </ul>
-<h2 id="automatic-code-formatting">Automatic Code Formatting</h2>
-<p>Using the <strong>nox</strong> mechanism the function to automatically re-format
-the source code is following:</p>
+<h2 id="default-sessions">Default sessions</h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -496,27 +632,27 @@ the source code is following:</p>
 <span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-0-10">10</a></span>
-<span class="normal"><a href="#__codelineno-0-11">11</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">def</span> <span class="nf">use_black</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="sd">&quot;&quot;&quot;Reformat the code.</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="sd">        session(Session): nox session.</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="n">args</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">posargs</span> <span class="ow">or</span> <span class="n">LOCATIONS</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;--line-length=100&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">#: All the session which should run by default</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="n">nox</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">sessions</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="s2">&quot;use_black&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="s2">&quot;use_flake8&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="s2">&quot;use_pycodestyle&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="s2">&quot;use_pylint&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>    <span class="s2">&quot;use_bandit&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="s2">&quot;use_radon&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="s2">&quot;use_audit&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="s2">&quot;use_mkdocs&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="s2">&quot;use_pytest&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>    <span class="s2">&quot;create_packages&quot;</span><span class="p">,</span>
 </code></pre></div>
 </td></tr></table>
-<ul>
-<li>The required package is <strong>black</strong> (see links at the bottom for documentation).</li>
-<li>The idea is not to care about code formatting anymore.</li>
-<li>The formatting will be done for all files and folders specified in <code>LOCATIONS</code>; 
-   however you can overwrite those by specifying <code>--</code> after a session and then
-   specifying the files you want (example: <code>nox -s use_black -- noxfile.py</code>)</li>
-</ul>
-<h2 id="static-code-analysis-with-flake8">Static Code Analysis with flake8</h2>
+<p>The main reason for this is that the deploying of the packages is done only
+when intending to deploy a release. The only way to exclude that session is
+to define which sessions should run by default when executing <code>nox</code>.</p>
+<h2 id="automatic-code-formatting">Automatic Code Formatting</h2>
+<p>Using the <strong>nox</strong> mechanism the function to automatically re-format
+the source code is following:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
@@ -527,31 +663,62 @@ the source code is following:</p>
 <span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-1-10">10</a></span>
-<span class="normal"><a href="#__codelineno-1-11">11</a></span>
-<span class="normal"><a href="#__codelineno-1-12">12</a></span>
-<span class="normal"><a href="#__codelineno-1-13">13</a></span>
-<span class="normal"><a href="#__codelineno-1-14">14</a></span>
-<span class="normal"><a href="#__codelineno-1-15">15</a></span>
-<span class="normal"><a href="#__codelineno-1-16">16</a></span>
-<span class="normal"><a href="#__codelineno-1-17">17</a></span>
-<span class="normal"><a href="#__codelineno-1-18">18</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">def</span> <span class="nf">use_flake8</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="sd">&quot;&quot;&quot;Checking different code issues.</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">def</span> <span class="nf">use_black</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">nox</span><span class="o">.</span><span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="sd">&quot;&quot;&quot;Reformat the code.</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5"></a>
 <a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="sd">    Args:</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="sd">        session(Session): nox session.</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="sd">        session (nox.Session): nox session.</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="n">args</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">posargs</span> <span class="ow">or</span> <span class="n">LOCATIONS</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;flake8&quot;</span><span class="p">,</span> <span class="s2">&quot;mccabe&quot;</span><span class="p">,</span> <span class="s2">&quot;flake8-import-order&quot;</span><span class="p">,</span> <span class="s2">&quot;flake8-bugbear&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12"></a>        <span class="s2">&quot;flake8&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13"></a>        <span class="s2">&quot;--max-line-length=100&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14"></a>        <span class="s2">&quot;--enable-extensions=B,B9,BLK,C,E,F,I,W&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15"></a>        <span class="s2">&quot;--max-complexity=8&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16"></a>        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17"></a>        <span class="n">env</span><span class="o">=</span><span class="n">ENV</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18"></a>    <span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;--line-length=100&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<ul>
+<li>The required package is <strong>black</strong> (see links at the bottom for documentation).</li>
+<li>The idea is not to care about code formatting anymore.</li>
+<li>The formatting will be done for all files and folders specified in <code>LOCATIONS</code>; 
+   however you can overwrite those by specifying <code>--</code> after a session and then
+   specifying the files you want (example: <code>nox -s use_black -- noxfile.py</code>)</li>
+</ul>
+<h2 id="static-code-analysis-with-flake8">Static Code Analysis with flake8</h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">def</span> <span class="nf">use_flake8</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">nox</span><span class="o">.</span><span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="sd">&quot;&quot;&quot;Checking different code issues.</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="sd">    Args:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="sd">        session (nox.Session): nox session.</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>    <span class="n">args</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">posargs</span> <span class="ow">or</span> <span class="n">LOCATIONS</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;flake8&quot;</span><span class="p">,</span> <span class="s2">&quot;mccabe&quot;</span><span class="p">,</span> <span class="s2">&quot;flake8-import-order&quot;</span><span class="p">,</span> <span class="s2">&quot;flake8-bugbear&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>        <span class="s2">&quot;flake8&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>        <span class="s2">&quot;--max-line-length=100&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>        <span class="s2">&quot;--enable-extensions=B,B9,BLK,C,E,F,I,W&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a>        <span class="s2">&quot;--max-complexity=8&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a>        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a>        <span class="n">env</span><span class="o">=</span><span class="n">ENV</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>    <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 <ul>
@@ -563,37 +730,6 @@ the source code is following:</p>
    specifying the files you want (example: <code>nox -s use_flake8 -- noxfile.py</code>)</li>
 </ul>
 <h2 id="static-code-analysis-with-pycodestyle">Static Code Analysis with pycodestyle</h2>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-2-10">10</a></span>
-<span class="normal"><a href="#__codelineno-2-11">11</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">def</span> <span class="nf">use_pycodestyle</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="sd">&quot;&quot;&quot;Checking code style.</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a>
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="sd">    Args:</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="sd">        session(Session): nox session.</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9"></a>    <span class="n">args</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">posargs</span> <span class="ow">or</span> <span class="n">LOCATIONS</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;pycodestyle&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;pycodestyle&quot;</span><span class="p">,</span> <span class="s2">&quot;--max-line-length=100&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
-<ul>
-<li>The required package is <strong>pycodestyle</strong> (see links at the bottom for documentation)</li>
-<li>It's a very well known addition to the pylint tool.</li>
-<li>The analysis will be done for all files and folders specified in <code>LOCATIONS</code>; 
-   however you can overwrite those by specifying <code>--</code> after a session and then
-   specifying the files you want (example: <code>nox -s use_pycodestyle -- noxfile.py</code>)</li>
-</ul>
-<h2 id="static-code-analysis-with-pylint">Static Code Analysis with pylint</h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
@@ -606,15 +742,46 @@ the source code is following:</p>
 <span class="normal"><a href="#__codelineno-3-10">10</a></span>
 <span class="normal"><a href="#__codelineno-3-11">11</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">def</span> <span class="nf">use_pylint</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">def</span> <span class="nf">use_pycodestyle</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">nox</span><span class="o">.</span><span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="sd">&quot;&quot;&quot;Checking code style.</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5"></a>
 <a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="sd">    Args:</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="sd">        session(Session): nox session.</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="sd">        session (nox.Session): nox session.</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9"></a>    <span class="n">args</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">posargs</span> <span class="ow">or</span> <span class="n">LOCATIONS</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;pylint&quot;</span><span class="p">,</span> <span class="s2">&quot;nox&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;pylint&quot;</span><span class="p">,</span> <span class="s2">&quot;--enable-all-extensions&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;pycodestyle&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;pycodestyle&quot;</span><span class="p">,</span> <span class="s2">&quot;--max-line-length=100&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<ul>
+<li>The required package is <strong>pycodestyle</strong> (see links at the bottom for documentation)</li>
+<li>It's a very well known addition to the pylint tool.</li>
+<li>The analysis will be done for all files and folders specified in <code>LOCATIONS</code>; 
+   however you can overwrite those by specifying <code>--</code> after a session and then
+   specifying the files you want (example: <code>nox -s use_pycodestyle -- noxfile.py</code>)</li>
+</ul>
+<h2 id="static-code-analysis-with-pylint">Static Code Analysis with pylint</h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">def</span> <span class="nf">use_pylint</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">nox</span><span class="o">.</span><span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="sd">&quot;&quot;&quot;Checking code style.</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="sd">    Args:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="sd">        session (nox.Session): nox session.</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>    <span class="n">args</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">posargs</span> <span class="ow">or</span> <span class="n">LOCATIONS</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;pylint&quot;</span><span class="p">,</span> <span class="s2">&quot;nox&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;pylint&quot;</span><span class="p">,</span> <span class="s2">&quot;--enable-all-extensions&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 <ul>
@@ -626,29 +793,29 @@ the source code is following:</p>
    specifying the files you want (example: <code>nox -s use_pylint -- noxfile.py</code>)</li>
 </ul>
 <h2 id="static-code-analysis-with-radon">Static Code Analysis with radon</h2>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-4-10">10</a></span>
-<span class="normal"><a href="#__codelineno-4-11">11</a></span>
-<span class="normal"><a href="#__codelineno-4-12">12</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">def</span> <span class="nf">use_radon</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="sd">&quot;&quot;&quot;Check code complexity.</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a>
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="sd">    Args:</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="sd">        session(Session): nox session.</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9"></a>    <span class="n">args</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">posargs</span> <span class="ow">or</span> <span class="n">LOCATIONS</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;radon&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;radon&quot;</span><span class="p">,</span> <span class="s2">&quot;cc&quot;</span><span class="p">,</span> <span class="s2">&quot;--min=B&quot;</span><span class="p">,</span> <span class="s2">&quot;--total-average&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;radon&quot;</span><span class="p">,</span> <span class="s2">&quot;mi&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">def</span> <span class="nf">use_radon</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">nox</span><span class="o">.</span><span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>    <span class="sd">&quot;&quot;&quot;Check code complexity.</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="sd">    Args:</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="sd">        session (nox.Session): nox session.</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>    <span class="n">args</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">posargs</span> <span class="ow">or</span> <span class="n">LOCATIONS</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;radon&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;radon&quot;</span><span class="p">,</span> <span class="s2">&quot;cc&quot;</span><span class="p">,</span> <span class="s2">&quot;--min=B&quot;</span><span class="p">,</span> <span class="s2">&quot;--total-average&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;radon&quot;</span><span class="p">,</span> <span class="s2">&quot;mi&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 <ul>
@@ -664,10 +831,10 @@ the source code is following:</p>
 <p>```py linenums="1"
  @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
-def use_bandit(session):
+def use_bandit(session: nox.Session) -&gt; None:
     """Checking code vulnerations.</p>
 <div class="highlight"><pre><span></span><code>Args:
-    session(Session): nox session.
+    session (nox.Session): nox session.
 &quot;&quot;&quot;
 args = session.posargs or LOCATIONS
 session.install(&quot;bandit&quot;)
@@ -682,16 +849,16 @@ session.run(&quot;bandit&quot;, &quot;-r&quot;, *args, env=ENV)
    specifying the files you want (example: <code>nox -s use_bandit -- noxfile.py</code>)</li>
 </ul>
 <h2 id="static-code-analysis-with-pip-audit">Static Code Analysis with pip-audit</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>@nox.session
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>@nox.parametrize(&quot;python&quot;, PYTHON_VERSIONS)
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>def use_audit(session):
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    &quot;&quot;&quot;Check vulnerations in used 3rd party libraries.
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    Args:
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        session(Session): nox session.
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    &quot;&quot;&quot;
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    session.install(&quot;pip-audit&quot;)
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    session.run(&quot;pip-audit&quot;, &quot;-r&quot;, &quot;requirements.txt&quot;, env=ENV)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>@nox.session
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>@nox.parametrize(&quot;python&quot;, PYTHON_VERSIONS)
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>def use_audit(session: nox.Session) -&gt; None:
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    &quot;&quot;&quot;Check vulnerations in used 3rd party libraries.
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    Args:
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        session (nox.Session): nox session.
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    &quot;&quot;&quot;
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    session.install(&quot;pip-audit&quot;)
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    session.run(&quot;pip-audit&quot;, &quot;-r&quot;, &quot;requirements.txt&quot;, env=ENV)
 </code></pre></div>
 <ul>
 <li>The required package is <strong>pip-audit</strong> (see links at the bottom for documentation)</li>
@@ -703,47 +870,6 @@ session.run(&quot;bandit&quot;, &quot;-r&quot;, *args, env=ENV)
 <h2 id="generate-the-html-documentation">Generate the HTML Documentation</h2>
 <p>Using the <strong>nox</strong> mechanism the function to generate this HTML documentation
 is following:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-6-10">10</a></span>
-<span class="normal"><a href="#__codelineno-6-11">11</a></span>
-<span class="normal"><a href="#__codelineno-6-12">12</a></span>
-<span class="normal"><a href="#__codelineno-6-13">13</a></span>
-<span class="normal"><a href="#__codelineno-6-14">14</a></span>
-<span class="normal"><a href="#__codelineno-6-15">15</a></span>
-<span class="normal"><a href="#__codelineno-6-16">16</a></span>
-<span class="normal"><a href="#__codelineno-6-17">17</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="k">def</span> <span class="nf">use_mkdocs</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="sd">&quot;&quot;&quot;Creating HTML documentation.</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a>
-<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="sd">    Args:</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="sd">        session(Session): nox session.</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10"></a>        <span class="s2">&quot;mkdocs&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11"></a>        <span class="s2">&quot;mkdocstrings&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12"></a>        <span class="s2">&quot;mkdocs-material&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13"></a>        <span class="s2">&quot;mkdocs-jupyter&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14"></a>        <span class="s2">&quot;mkdocs-autolinks-plugin&quot;</span><span class="p">,</span>
-<a id="__codelineno-6-15" name="__codelineno-6-15"></a>        <span class="s2">&quot;jupyter&quot;</span>
-<a id="__codelineno-6-16" name="__codelineno-6-16"></a>    <span class="p">)</span>
-<a id="__codelineno-6-17" name="__codelineno-6-17"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;mkdocs&quot;</span><span class="p">,</span> <span class="s2">&quot;build&quot;</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
-<ul>
-<li>The installation requires some python package using <code>session.install</code>.</li>
-<li>Finally the HTML is built with <code>session run</code></li>
-<li>You will then find the result in the local folder <strong>site</strong>.  </li>
-</ul>
-<h2 id="unittests-and-benchmarking-with-pytest">Unittests and benchmarking with pytest</h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
@@ -760,35 +886,76 @@ is following:</p>
 <span class="normal"><a href="#__codelineno-7-14">14</a></span>
 <span class="normal"><a href="#__codelineno-7-15">15</a></span>
 <span class="normal"><a href="#__codelineno-7-16">16</a></span>
-<span class="normal"><a href="#__codelineno-7-17">17</a></span>
-<span class="normal"><a href="#__codelineno-7-18">18</a></span>
-<span class="normal"><a href="#__codelineno-7-19">19</a></span>
-<span class="normal"><a href="#__codelineno-7-20">20</a></span>
-<span class="normal"><a href="#__codelineno-7-21">21</a></span>
-<span class="normal"><a href="#__codelineno-7-22">22</a></span>
-<span class="normal"><a href="#__codelineno-7-23">23</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">def</span> <span class="nf">use_pytest</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="sd">&quot;&quot;&quot;Running unittests.</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">def</span> <span class="nf">use_mkdocs</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">nox</span><span class="o">.</span><span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="sd">&quot;&quot;&quot;Creating HTML documentation.</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5"></a>
 <a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="sd">    Args:</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="sd">        session(Session): nox session.</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="sd">        session (nox.Session): nox session.</span>
 <a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;pytest&quot;</span><span class="p">,</span> <span class="s2">&quot;pytest-cov&quot;</span><span class="p">,</span> <span class="s2">&quot;pytest-random-order&quot;</span><span class="p">,</span> <span class="s2">&quot;pytest-benchmark&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;-r&quot;</span><span class="p">,</span> <span class="s2">&quot;requirements.txt&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12"></a>        <span class="s2">&quot;pytest&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13"></a>        <span class="s2">&quot;--ignore=noxfile.py&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14"></a>        <span class="s2">&quot;--random-order&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15"></a>        <span class="s2">&quot;--doctest-modules&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16"></a>        <span class="s2">&quot;--cov=responsive&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17"></a>        <span class="s2">&quot;--cov-branch&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18"></a>        <span class="s2">&quot;--cov-fail-under=96&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-19" name="__codelineno-7-19"></a>        <span class="s2">&quot;--cov-report=term&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-20" name="__codelineno-7-20"></a>        <span class="s2">&quot;--cov-report=html&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21"></a>        <span class="s2">&quot;--junit-xml=responsive-data-junit.xml&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-22" name="__codelineno-7-22"></a>        <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">,</span>
-<a id="__codelineno-7-23" name="__codelineno-7-23"></a>    <span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>        <span class="s2">&quot;mkdocs&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>        <span class="s2">&quot;mkdocstrings&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a>        <span class="s2">&quot;mkdocs-material&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a>        <span class="s2">&quot;mkdocs-jupyter&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a>        <span class="s2">&quot;mkdocs-autolinks-plugin&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a>        <span class="s2">&quot;jupyter&quot;</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a>    <span class="p">)</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;mkdocs&quot;</span><span class="p">,</span> <span class="s2">&quot;build&quot;</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<ul>
+<li>The installation requires some python package using <code>session.install</code>.</li>
+<li>Finally the HTML is built with <code>session run</code></li>
+<li>You will then find the result in the local folder <strong>site</strong>.  </li>
+</ul>
+<h2 id="unittests-and-benchmarking-with-pytest">Unittests and benchmarking with pytest</h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="k">def</span> <span class="nf">use_pytest</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">nox</span><span class="o">.</span><span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>    <span class="sd">&quot;&quot;&quot;Running unittests.</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="sd">    Args:</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="sd">        session (nox.Session): nox session.</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;pytest&quot;</span><span class="p">,</span> <span class="s2">&quot;pytest-cov&quot;</span><span class="p">,</span> <span class="s2">&quot;pytest-random-order&quot;</span><span class="p">,</span> <span class="s2">&quot;pytest-benchmark&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;-r&quot;</span><span class="p">,</span> <span class="s2">&quot;requirements.txt&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a>        <span class="s2">&quot;pytest&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a>        <span class="s2">&quot;--ignore=noxfile.py&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a>        <span class="s2">&quot;--random-order&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a>        <span class="s2">&quot;--doctest-modules&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a>        <span class="s2">&quot;--cov=responsive&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a>        <span class="s2">&quot;--cov-branch&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a>        <span class="s2">&quot;--cov-fail-under=96&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a>        <span class="s2">&quot;--cov-report=term&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a>        <span class="s2">&quot;--cov-report=html&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a>        <span class="s2">&quot;--junit-xml=responsive-data-junit.xml&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a>        <span class="n">env</span><span class="o">=</span><span class="n">ENV</span><span class="p">,</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23"></a>    <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 <ul>
@@ -803,22 +970,94 @@ is following:</p>
 <li>A JUnit compatible XML is generate.</li>
 <li>The build does fail when a test does fail or when the code coverage is below expected limit.</li>
 </ul>
+<h2 id="creating-the-packages">Creating the packages</h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span>
+<span class="normal"><a href="#__codelineno-9-8">8</a></span>
+<span class="normal"><a href="#__codelineno-9-9">9</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="k">def</span> <span class="nf">create_packages</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">nox</span><span class="o">.</span><span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>    <span class="sd">&quot;&quot;&quot;Creating packages.</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="sd">    Args:</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="sd">        session (nox.Session): nox session.</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;setup.py&quot;</span><span class="p">,</span> <span class="s2">&quot;sdist&quot;</span><span class="p">,</span> <span class="s2">&quot;bdist_wheel&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<ul>
+<li>with <strong>sdist</strong> you generate the source package.</li>
+<li>with <strong>bdist_wheel</strong> you generate the binary package ensuring all dependencies are installed too (when given).</li>
+<li>you will find the packages in folder <strong>dist</strong>.</li>
+</ul>
+<h2 id="deploying-the-packages">Deploying the packages</h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">session</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="nd">@nox</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">PYTHON_VERSIONS</span><span class="p">)</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="k">def</span> <span class="nf">deploy_packages</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">nox</span><span class="o">.</span><span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>    <span class="sd">&quot;&quot;&quot;Deploying packages.</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="sd">    Args:</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="sd">        session (nox.Session): nox session.</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a>    <span class="n">session</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">&quot;twine&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a>    <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;twine&quot;</span><span class="p">,</span> <span class="s2">&quot;upload&quot;</span><span class="p">,</span> <span class="s2">&quot;--repository-url=https://test.pypi.org/legacy/&quot;</span><span class="p">,</span> <span class="s2">&quot;dist/*&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<ul>
+<li>the given setup does upload the packages to the PYPI test instance (will be changed later on)</li>
+<li>you have to ensure that the environment variables <strong>TWINE_USERNAME</strong> and <strong>TWINE_PASSWORD</strong> are set accordingly;
+   the username is the name of the token you have specified in the PYPI instance and the password is the token
+   that has been generated by the PYPI instance for you.</li>
+<li>those variables have to be set into the secrets section of the repository at Github that the Github action are
+   able to inject them into the build process.</li>
+</ul>
 <h2 id="links">Links</h2>
+<h3 id="the-build-tool-itself">The build tool itself</h3>
 <ul>
 <li><a href="https://nox.thea.codes/en/stable/">https://nox.thea.codes/en/stable/</a></li>
+</ul>
+<h3 id="code-formatting">Code formatting</h3>
+<ul>
 <li><a href="https://black.readthedocs.io/en/stable/">https://black.readthedocs.io/en/stable/</a></li>
+</ul>
+<h3 id="static-code-analysis">Static code analysis</h3>
+<ul>
 <li><a href="https://flake8.pycqa.org/en/latest/">https://flake8.pycqa.org/en/latest/</a></li>
 <li><a href="https://github.com/PyCQA/flake8-import-order">https://github.com/PyCQA/flake8-import-order</a></li>
 <li><a href="https://github.com/PyCQA/flake8-bugbear">https://github.com/PyCQA/flake8-bugbear</a></li>
 <li><a href="https://pycodestyle.pycqa.org/en/latest/intro.html">https://pycodestyle.pycqa.org/en/latest/intro.html</a></li>
 <li><a href="https://bandit.readthedocs.io/en/latest/">https://bandit.readthedocs.io/en/latest/</a></li>
 <li><a href="https://pylint.pycqa.org/en/latest/">https://pylint.pycqa.org/en/latest/</a></li>
-<li><a href="https://www.mkdocs.org">https://www.mkdocs.org</a></li>
-<li><a href="https://docs.pytest.org/en/7.0.x/">https://docs.pytest.org/en/7.0.x/</a></li>
 <li><a href="https://github.com/trailofbits/pip-audit">https://github.com/trailofbits/pip-audit</a></li>
 <li><a href="https://radon.readthedocs.io/en/latest/">https://radon.readthedocs.io/en/latest/</a></li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<ul>
+<li><a href="https://www.mkdocs.org">https://www.mkdocs.org</a></li>
+</ul>
+<h3 id="unittesting-and-benchmarking">Unittesting and Benchmarking</h3>
+<ul>
 <li><a href="https://docs.pytest.org/en/7.1.x/">https://docs.pytest.org/en/7.1.x/</a></li>
 <li><a href="https://pytest-benchmark.readthedocs.io/en/latest/">https://pytest-benchmark.readthedocs.io/en/latest/</a></li>
+</ul>
+<h3 id="packages-and-deployment">Packages and Deployment</h3>
+<ul>
+<li><a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/">https://packaging.python.org/en/latest/tutorials/packaging-projects/</a></li>
+<li><a href="https://realpython.com/pypi-publish-python-package/">https://realpython.com/pypi-publish-python-package/</a></li>
 </ul>
 
               
