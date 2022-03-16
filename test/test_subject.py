@@ -22,6 +22,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
+# pylint: disable=compare-to-zero,no-self-use
 from unittest import TestCase
 
 from responsive.observer import DefaultObserver
@@ -51,3 +52,22 @@ class SubjectTest(TestCase):
 
         for observer in observers:
             self.assertEqual(observer.get_count_updates(), 1)
+
+    def test_observer_with_special_interest(self):
+        """Testing filter mechanism."""
+        observer = DefaultObserver()
+        observer.set_interests({"value": lambda value: value % 2 == 0})
+        subject = Subject()
+        subject.add_observer(observer)
+        subject.notify(value=2, message="hello world 1")
+        subject.notify(value=3, message="hello world 2")
+        self.assertEqual(observer.get_count_updates(), 1)
+
+    def test_remove_observer(self):
+        """Testing remove of observer."""
+        observer = DefaultObserver()
+        subject = Subject()
+        subject.add_observer(observer)
+        subject.remove_observer(observer)
+        subject.notify()
+        self.assertEqual(observer.get_count_updates(), 0)

@@ -44,12 +44,29 @@ class Subject:
             **kwargs (Any): optional key/value arguments
         """
         for observer in self.__observers:
-            observer.update(self, *args, **kwargs)
+            interests = observer.get_interests()
+            if len(interests) == 0:  # pylint: disable=compare-to-zero
+                observer.update(self, *args, **kwargs)
+            else:
+                for key, value in kwargs.items():
+                    if key in interests:
+                        if interests[key](value):
+                            observer.update(self, *args, **kwargs)
+                            break
 
-    def add_observer(self, observer: Observer):
+    def add_observer(self, observer: Observer) -> None:
         """Adding observer to list.
 
         Args:
-            observer (obj): object that can
+            observer (obj): object that will be notified.
         """
-        self.__observers.append(observer)
+        if observer not in self.__observers:
+            self.__observers.append(observer)
+
+    def remove_observer(self, observer: Observer) -> None:
+        """Remove observer from list.
+
+        Args:
+            observer (obj): object that don't want to get updated anymore.
+        """
+        self.__observers.remove(observer)

@@ -24,6 +24,7 @@
     THE SOFTWARE.
 """
 # pylint: disable=too-few-public-methods
+from collections.abc import Callable
 from typing import Any
 
 
@@ -40,6 +41,18 @@ class Observer:
         """
         raise NotImplementedError()
 
+    def get_interests(self) -> dict[str, Callable[[Any], bool]]:  # pylint: disable=no-self-use
+        """Telling a subject the interest. When providing {} then all changes
+        are of interest (default) otherwise the interest is related to a name
+        and a function for the value telling - when the name is related to the
+        change - whether the value is of interest. If not interest does not
+        match the notification (updated) is not done.
+
+        Returns:
+            dictionary with names and functions (idea: `is_relevant(value)`)
+        """
+        return {}
+
 
 class DefaultObserver(Observer):
     """A simple observer class."""
@@ -48,6 +61,7 @@ class DefaultObserver(Observer):
         """Initializing empty list of reveived updates."""
         super().__init__()
         self.__updates = []
+        self.__interests = {}
 
     def update(self, subject: object, *args: Any, **kwargs: Any) -> None:
         """Called when the subject has been changed.
@@ -58,6 +72,22 @@ class DefaultObserver(Observer):
             **kwargs (Any): optional key/value arguments
         """
         self.__updates.append((subject, args, kwargs))
+
+    def set_interests(self, interests: dict[str, Callable[[Any], bool]]) -> None:
+        """Change interests.
+
+        Args:
+            interests (dict[str, Callable[[Any], bool]]): new interests.
+        """
+        self.__interests = interests
+
+    def get_interests(self) -> dict[str, Callable[[Any], bool]]:
+        """Telling a subject the interests.
+
+        Returns:
+            dictionary with names and functions (idea: `is_relevant(value)`)
+        """
+        return self.__interests
 
     def __iter__(self):
         """Allows iterating over the updates of this observer."""
@@ -70,3 +100,16 @@ class DefaultObserver(Observer):
     def get_count_updates(self):
         """Provide number of updates."""
         return len(self.__updates)
+
+
+class DoNothingObserver(Observer):
+    """Does nothing (more of a test)."""
+
+    def update(self, subject: object, *args: Any, **kwargs: Any) -> None:
+        """Called when the subject has been changed.
+
+        Args:
+            subject (object): the one who does the notification.
+            *args (Any): optional positional arguments
+            **kwargs (Any): optional key/value arguments
+        """
