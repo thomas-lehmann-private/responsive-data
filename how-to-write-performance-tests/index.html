@@ -292,30 +292,38 @@
 <h1 id="how-to-write-performance-test">How to write performance test</h1>
 <p>It's really easy. The <strong>pytest</strong> session includes the plugin <strong>pytest-benchmark</strong>.
 With this writing a performance test is simply writing functions like following:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
-<span class="normal"><a href="#__codelineno-0-2">2</a></span>
-<span class="normal"><a href="#__codelineno-0-3">3</a></span>
-<span class="normal"><a href="#__codelineno-0-4">4</a></span>
-<span class="normal"><a href="#__codelineno-0-5">5</a></span>
-<span class="normal"><a href="#__codelineno-0-6">6</a></span>
-<span class="normal"><a href="#__codelineno-0-7">7</a></span>
-<span class="normal"><a href="#__codelineno-0-8">8</a></span>
-<span class="normal"><a href="#__codelineno-0-9">9</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span> <span class="nf">test_subject_observer_default_performance_1000</span><span class="p">(</span><span class="n">benchmark</span><span class="p">):</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="sd">&quot;&quot;&quot;Testing simple notification process with many observers.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">observers</span> <span class="o">=</span> <span class="p">[</span><span class="n">DefaultObserver</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)]</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="n">subject</span> <span class="o">=</span> <span class="n">Subject</span><span class="p">()</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="k">for</span> <span class="n">observer</span> <span class="ow">in</span> <span class="n">observers</span><span class="p">:</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a>        <span class="n">subject</span><span class="o">.</span><span class="n">add_observer</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="n">benchmark</span><span class="p">(</span><span class="n">subject</span><span class="o">.</span><span class="n">notify</span><span class="p">)</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span> <span class="nf">test_subject_with_one_observer_with_special_interest_performance</span><span class="p">(</span><span class="n">benchmark</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="sd">&quot;&quot;&quot;Testing advanced notification mechanism.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">observer</span> <span class="o">=</span> <span class="n">DefaultObserver</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="n">observer</span><span class="o">.</span><span class="n">set_interests</span><span class="p">(</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>        <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># pylint: disable=compare-to-zero</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>    <span class="n">subject</span> <span class="o">=</span> <span class="n">Subject</span><span class="p">()</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="n">subject</span><span class="o">.</span><span class="n">add_observer</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>        <span class="n">subject</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>    <span class="n">benchmark</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-<p>The example here does 10000 attaching of observers to one subject;
+<p>The example here does attaching of one observer with special interest to one subject;
 the notification part is the call that will be measured. You simply
-define a function with one parameter <strong>benchmark</strong> which will be
-a function that you can use to pass another function and its parameters.
-In given example we didn't pass parameters.</p>
+define a function passing it to the  <strong>benchmark</strong> function.</p>
+<p>It's important that you write those tests for small scenarios since the scaling
+is automatically tested by the bechmark framework.</p>
 <p><img alt="" src="../images/performance-results.png" /></p>
 <p>For more details please read here: <a href="https://pytest-benchmark.readthedocs.io/en/latest/">https://pytest-benchmark.readthedocs.io/en/latest/</a>.</p>
 
