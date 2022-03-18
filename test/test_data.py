@@ -120,7 +120,7 @@ class DataTest(TestCase):
     def test_set_and_get_list_values(self):
         """Test set and get of list values."""
         for some_data in (make_responsive(SomeData()), make_responsive({"some_list": []})):
-            some_data.some_list = [1, 2, 3, 4, 5]
+            some_data.some_list = [1, 2, 3, 4, 5]  # skipcq: PY-W0070
             some_data.some_list.append(6)
             some_data.some_list.remove(2)
             some_data.some_list[-2] = 9

@@ -25,7 +25,7 @@ THE SOFTWARE.
 
 
 def filter_dict_entries(obj: dict, keys: list[str]) -> dict:
-    """filter out entries with given keys.
+    """Filter out entries with given keys.
 
     Args:
         obj (dict): dictionary to filter for given keys

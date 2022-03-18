@@ -49,10 +49,9 @@ class Subject:
                 observer.update(self, *args, **kwargs)
             else:
                 for key, value in kwargs.items():
-                    if key in interests:
-                        if interests[key](value):
-                            observer.update(self, *args, **kwargs)
-                            break
+                    if key in interests and interests[key](value):
+                        observer.update(self, *args, **kwargs)
+                        break
 
     def add_observer(self, observer: Observer) -> None:
         """Adding observer to list.

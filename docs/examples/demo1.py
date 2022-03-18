@@ -27,6 +27,3 @@ if __name__ == "__main__":
     subject.some_list = [5, 4, 3, 2, 1, 0]
     # changing string field of a nested dictionary
     subject.some_dict.some_other_str = "yet another string"
-
-
-
