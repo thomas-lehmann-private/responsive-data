@@ -1,4 +1,4 @@
-""" Module constants.
+"""Module constants.
 
 The MIT License
 

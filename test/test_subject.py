@@ -1,4 +1,4 @@
-""" Module test_subject.
+"""Module test_subject.
 
 The MIT License
 

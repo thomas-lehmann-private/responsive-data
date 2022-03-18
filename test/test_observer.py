@@ -1,4 +1,4 @@
-""" Module test_observer.
+"""Module test_observer.
 
 The MIT License
 
@@ -40,6 +40,7 @@ class ObserverTest(TestCase):
         messages = []
 
         def output(message: str) -> None:
+            """Test ouput replacement instead of print."""
             messages.append(message)
 
         observer = OutputObserver(output_function=output)

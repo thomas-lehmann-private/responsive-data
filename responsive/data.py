@@ -1,4 +1,4 @@
-""" Module data.
+"""Module data.
 
 The MIT License
 

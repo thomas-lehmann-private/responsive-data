@@ -1,4 +1,4 @@
-""" Module tools.
+"""Module tools.
 
 The MIT License
 

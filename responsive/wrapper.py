@@ -1,4 +1,4 @@
-""" Module wrapper.
+"""Module wrapper.
 
 The MIT License
 

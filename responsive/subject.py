@@ -1,4 +1,4 @@
-""" Module subject.
+"""Module subject.
 
 ..
     The MIT License

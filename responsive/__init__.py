@@ -1,4 +1,4 @@
-""" Package responsive.
+"""Package responsive.
 
 The MIT License
 

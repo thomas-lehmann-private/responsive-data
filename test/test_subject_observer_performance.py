@@ -1,4 +1,4 @@
-""" Module test_subject_observer_performance.
+"""Module test_subject_observer_performance.
 
 The MIT License
 
@@ -44,6 +44,7 @@ def test_subject_with_one_observer_with_special_interest_performance(benchmark):
     subject.add_observer(observer)
 
     def func():
+        """Function for benchmarking."""
         subject.notify(value=2)
 
     benchmark(func)

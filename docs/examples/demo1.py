@@ -1,3 +1,4 @@
+"""Demo code."""
 from responsive.data import make_responsive
 from responsive.observer import OutputObserver
 

@@ -1,1 +1,1 @@
-""" Package test. """
+"""Package test."""
