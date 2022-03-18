@@ -1,4 +1,4 @@
-""" Module noxfile.
+"""Module noxfile.
 
 The MIT License
 

@@ -1,4 +1,4 @@
-""" Module setup.py.
+"""Module setup.py.
 
 The MIT License
 
