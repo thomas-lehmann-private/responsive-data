@@ -113,3 +113,23 @@ class DoNothingObserver(Observer):
             *args (Any): optional positional arguments
             **kwargs (Any): optional key/value arguments
         """
+
+
+class OutputObserver(Observer):
+    """Output a line for each update. Default output function is `print`."""
+
+    def __init__(self, output_function=print):
+        """Initialize observer with output function."""
+        self.__output_function = output_function
+
+    def update(self, subject: object, *args: Any, **kwargs: Any) -> None:
+        """Called when the subject has been changed.
+
+        Args:
+            subject (object): the one who does the notification.
+            *args (Any): optional positional arguments
+            **kwargs (Any): optional key/value arguments
+        """
+        self.__output_function(
+            f"subject with id {id(subject)} has notified with {args} and {kwargs}"
+        )

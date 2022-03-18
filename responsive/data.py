@@ -23,86 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 # pylint: disable=too-few-public-methods
-from typing import Any
-
-from responsive.observer import Observer
-from responsive.subject import Subject
-
-
-class Wrapper(Subject, Observer):
-    """Wrapper for an object.
-
-    Example:
-
-        >>> from responsive.observer import DefaultObserver
-        >>> observer = DefaultObserver()
-        >>> book = Wrapper({"author": "", "title": ""})
-        >>> book.add_observer(observer)
-        >>> book.author = "Raymond Chandler"
-        >>> book.title = "The Big Sleep"
-        >>> observer.get_count_updates()
-        2
-    """
-
-    def __init__(self, obj: object):
-        """Initialize wrapper.
-
-        Args:
-            obj (objec): object to wrap.
-        """
-        super().__init__()
-        self.obj = obj
-
-    def __repr__(self) -> str:
-        """Get string representation of wrapped data.
-
-        Returns:
-            string representation of wrapped data.
-        """
-        return f"{self.obj}"
-
-    def __setattr__(self, name: str, value: Any) -> None:
-        """Creating attribute 'obj' or changing one of its attributes.
-
-        Args:
-            name  (str): name of the attribute.
-            value (Any): value of the attribute.
-        """
-        if "obj" in self.__dict__:
-            if isinstance(self.obj, dict):
-                old_value = self.obj[name]
-                self.obj[name] = value
-                self.notify(attribute_name=name, old_value=old_value, new_value=value)
-            else:
-                old_value = self.obj.__dict__[name]
-                self.obj.__dict__[name] = value
-                self.notify(attribute_name=name, old_value=old_value, new_value=value)
-        else:
-            super().__setattr__(name, value)
-
-    def __getattr__(self, name: str) -> Any:
-        """Get value of attribute.
-
-        Args:
-            name (str): name of the attribute
-
-        Returns:
-            value of the attribute.
-        """
-        if isinstance(self.obj, dict):
-            return self.obj[name]
-
-        return self.obj.__dict__[name]
-
-    def update(self, subject: object, *args: Any, **kwargs: Any):
-        """Called when related subject has changed.
-
-        Args:
-            subject (object): the one who does the notification.
-            *args (Any): optional positional arguments
-            **kwargs (Any): optional key/value arguments
-        """
-        self.notify(*args, **kwargs)
+from responsive.wrapper import DictWrapper, ListWrapper
 
 
 def __apply_wrapper(root: object, parent: object) -> None:
@@ -115,7 +36,7 @@ def __apply_wrapper(root: object, parent: object) -> None:
     current = parent if parent is not None else root
     the_dict = None
 
-    if isinstance(current, Wrapper):
+    if isinstance(current, DictWrapper):
         __apply_wrapper(current, current.obj)
         return
 
@@ -124,9 +45,13 @@ def __apply_wrapper(root: object, parent: object) -> None:
     for key, value in the_dict.items():
         current_type = type(value)
         if str(current_type).startswith("<class"):
-            if not current_type.__module__ == "builtins":
-                wrapped_value = Wrapper(value)
+            if not current_type.__module__ == "builtins" or isinstance(value, dict):
+                wrapped_value = DictWrapper(value)
                 __apply_wrapper(root, wrapped_value)
+                wrapped_value.add_observer(root)
+                the_dict[key] = wrapped_value
+            elif isinstance(value, list):
+                wrapped_value = ListWrapper(value)
                 wrapped_value.add_observer(root)
                 the_dict[key] = wrapped_value
 
@@ -140,6 +65,6 @@ def make_responsive(obj: object) -> object:
     Returns:
         Modified object.
     """
-    wrapped_value = Wrapper(obj)
+    wrapped_value = DictWrapper(obj)
     __apply_wrapper(wrapped_value, None)
     return wrapped_value

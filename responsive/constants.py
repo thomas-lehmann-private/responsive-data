@@ -1,4 +1,4 @@
-""" Module test_subject_observer_performance.
+""" Module constants.
 
 The MIT License
 
@@ -22,36 +22,32 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
-from responsive.observer import DefaultObserver, DoNothingObserver
-from responsive.subject import Subject
+from enum import Enum, unique
 
 
-def test_subject_observer_with_default_observer_performance(benchmark):
-    """Testing simple notification process."""
-    observer = DefaultObserver()
-    subject = Subject()
-    subject.add_observer(observer)
-    benchmark(subject.notify)
+@unique
+class Operation(Enum):
+    """Constants for a operation."""
+
+    VALUE_CHANGED = 1
+    """ Value has been changed."""
+
+    VALUE_ADDED = 2
+    """ Value has been added."""
+
+    VALUE_REMOVED = 3
+    """ Values has been removed."""
 
 
-def test_subject_with_one_observer_with_special_interest_performance(benchmark):
-    """Testing advanced notification mechanism."""
-    observer = DefaultObserver()
-    observer.set_interests(
-        {"value": lambda value: value % 2 == 0}  # pylint: disable=compare-to-zero
-    )
-    subject = Subject()
-    subject.add_observer(observer)
+@unique
+class Context(Enum):
+    """Constants for a context."""
 
-    def func():
-        subject.notify(value=2)
+    CLASS = 1
+    """ Class context. """
 
-    benchmark(func)
+    DICTIONARY = 2
+    """ Dictionary context. """
 
-
-def test_subject_with_do_nothing_observer_performance(benchmark):
-    """Testing simple notification process with many observers."""
-    observer = DoNothingObserver()
-    subject = Subject()
-    subject.add_observer(observer)
-    benchmark(subject.notify)
+    LIST = 3
+    """ List context. """

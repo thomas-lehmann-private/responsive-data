@@ -1,4 +1,4 @@
-""" Module test_subject_observer_performance.
+""" Module tools.
 
 The MIT License
 
@@ -22,36 +22,22 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
-from responsive.observer import DefaultObserver, DoNothingObserver
-from responsive.subject import Subject
 
 
-def test_subject_observer_with_default_observer_performance(benchmark):
-    """Testing simple notification process."""
-    observer = DefaultObserver()
-    subject = Subject()
-    subject.add_observer(observer)
-    benchmark(subject.notify)
+def filter_dict_entries(obj: dict, keys: list[str]) -> dict:
+    """filter out entries with given keys.
 
+    Args:
+        obj (dict): dictionary to filter for given keys
+        keys (list[str]): keys to filter out
 
-def test_subject_with_one_observer_with_special_interest_performance(benchmark):
-    """Testing advanced notification mechanism."""
-    observer = DefaultObserver()
-    observer.set_interests(
-        {"value": lambda value: value % 2 == 0}  # pylint: disable=compare-to-zero
-    )
-    subject = Subject()
-    subject.add_observer(observer)
+    Returns:
+        filtered dictionary.
 
-    def func():
-        subject.notify(value=2)
+    Example:
 
-    benchmark(func)
-
-
-def test_subject_with_do_nothing_observer_performance(benchmark):
-    """Testing simple notification process with many observers."""
-    observer = DoNothingObserver()
-    subject = Subject()
-    subject.add_observer(observer)
-    benchmark(subject.notify)
+        >>> result = filter_dict_entries({"a": 1, "b": 2, "c": 3, "d": 4}, ["a", "c"])
+        >>> [(key, result[key]) for key in sorted(result.keys())]
+        [('b', 2), ('d', 4)]
+    """
+    return {key: value for key, value in obj.items() if key not in keys}

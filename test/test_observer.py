@@ -24,7 +24,7 @@ THE SOFTWARE.
 """
 from unittest import TestCase
 
-from responsive.observer import Observer
+from responsive.observer import Observer, OutputObserver
 
 
 class ObserverTest(TestCase):
@@ -34,3 +34,16 @@ class ObserverTest(TestCase):
         """Testing observer (update should throw an exception)."""
         observer = Observer()
         self.assertRaises(NotImplementedError, observer.update, None)
+
+    def test_output_observer(self):
+        """Testing output observer."""
+        messages = []
+
+        def output(message: str) -> None:
+            messages.append(message)
+
+        observer = OutputObserver(output_function=output)
+        observer.update(self, (1, 2, 3), context="test")
+
+        self.assertEqual(len(messages), 1)
+        self.assertTrue(messages[0].find("(1, 2, 3)") >= 0)

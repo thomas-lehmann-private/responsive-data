@@ -194,6 +194,7 @@ def use_pytest(session: nox.Session) -> None:
     session.run(
         "pytest",
         "--ignore=noxfile.py",
+        "--ignore=docs/examples",
         "--random-order",
         "--doctest-modules",
         "--cov=responsive",
