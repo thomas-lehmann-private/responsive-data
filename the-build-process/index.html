@@ -6,6 +6,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Library for making data responsive">
+      
+      
+        <meta name="author" content="Thomas Lehmann">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -137,6 +141,18 @@
 </div>
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/thomas-lehmann-private/responsive-data/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
   </nav>
   
 </header>
@@ -170,6 +186,18 @@
     reponsive-data
   </label>
   
+    <div class="md-nav__source">
+      <a href="https://github.com/thomas-lehmann-private/responsive-data/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
   <ul class="md-nav__list" data-md-scrollfix>
     
       
@@ -182,6 +210,21 @@
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
         Welcome to responsive-data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/" class="md-nav__link">
+        The design
       </a>
     </li>
   
@@ -625,17 +668,21 @@
             <article class="md-content__inner md-typeset">
               
                 
+<a href="https://github.com/thomas-lehmann-private/responsive-data/edit/master/docs/the-build-process.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
 
 
-<h1 id="the-build-process">The Build Process</h1>
-<h2 id="introduction">Introduction</h2>
+
+<h1 id="the-build-process">The Build Process<a class="headerlink" href="#the-build-process" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>Please keep in mind that this are the goals:</p>
 <ul>
 <li>ensuring that on Github and locally it is <strong>the same build process</strong>.</li>
 <li>that the build does fail when one of the tool does fail</li>
 <li>that every developer does use the build process <strong>before</strong> doing a commit.</li>
 </ul>
-<h2 id="default-sessions">Default sessions</h2>
+<h2 id="default-sessions">Default sessions<a class="headerlink" href="#default-sessions" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -664,7 +711,7 @@
 <p>The main reason for this is that the deploying of the packages is done only
 when intending to deploy a release. The only way to exclude that session is
 to define which sessions should run by default when executing <code>nox</code>.</p>
-<h2 id="automatic-code-formatting">Automatic Code Formatting</h2>
+<h2 id="automatic-code-formatting">Automatic Code Formatting<a class="headerlink" href="#automatic-code-formatting" title="Permanent link">&para;</a></h2>
 <p>Using the <strong>nox</strong> mechanism the function to automatically re-format
 the source code is following:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
@@ -697,7 +744,7 @@ the source code is following:</p>
    however you can overwrite those by specifying <code>--</code> after a session and then
    specifying the files you want (example: <code>nox -s use_black -- noxfile.py</code>)</li>
 </ul>
-<h2 id="static-code-analysis-with-flake8">Static Code Analysis with flake8</h2>
+<h2 id="static-code-analysis-with-flake8">Static Code Analysis with flake8<a class="headerlink" href="#static-code-analysis-with-flake8" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
@@ -743,7 +790,7 @@ the source code is following:</p>
    however you can overwrite those by specifying <code>--</code> after a session and then
    specifying the files you want (example: <code>nox -s use_flake8 -- noxfile.py</code>)</li>
 </ul>
-<h2 id="static-code-analysis-with-pycodestyle">Static Code Analysis with pycodestyle</h2>
+<h2 id="static-code-analysis-with-pycodestyle">Static Code Analysis with pycodestyle<a class="headerlink" href="#static-code-analysis-with-pycodestyle" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
@@ -774,7 +821,7 @@ the source code is following:</p>
    however you can overwrite those by specifying <code>--</code> after a session and then
    specifying the files you want (example: <code>nox -s use_pycodestyle -- noxfile.py</code>)</li>
 </ul>
-<h2 id="static-code-analysis-with-pylint">Static Code Analysis with pylint</h2>
+<h2 id="static-code-analysis-with-pylint">Static Code Analysis with pylint<a class="headerlink" href="#static-code-analysis-with-pylint" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
@@ -806,7 +853,7 @@ the source code is following:</p>
    however you can overwrite those by specifying <code>--</code> after a session and then
    specifying the files you want (example: <code>nox -s use_pylint -- noxfile.py</code>)</li>
 </ul>
-<h2 id="static-code-analysis-with-radon">Static Code Analysis with radon</h2>
+<h2 id="static-code-analysis-with-radon">Static Code Analysis with radon<a class="headerlink" href="#static-code-analysis-with-radon" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
@@ -841,7 +888,7 @@ the source code is following:</p>
    however you can overwrite those by specifying <code>--</code> after a session and then
    specifying the files you want (example: <code>nox -s use_radon -- noxfile.py</code>)</li>
 </ul>
-<h2 id="static-code-analysis-with-bandit">Static Code Analysis with bandit</h2>
+<h2 id="static-code-analysis-with-bandit">Static Code Analysis with bandit<a class="headerlink" href="#static-code-analysis-with-bandit" title="Permanent link">&para;</a></h2>
 <p>```py linenums="1"
  @nox.session
 @nox.parametrize("python", PYTHON_VERSIONS)
@@ -862,7 +909,7 @@ session.run(&quot;bandit&quot;, &quot;-r&quot;, *args, env=ENV)
    however you can overwrite those by specifying <code>--</code> after a session and then
    specifying the files you want (example: <code>nox -s use_bandit -- noxfile.py</code>)</li>
 </ul>
-<h2 id="static-code-analysis-with-pip-audit">Static Code Analysis with pip-audit</h2>
+<h2 id="static-code-analysis-with-pip-audit">Static Code Analysis with pip-audit<a class="headerlink" href="#static-code-analysis-with-pip-audit" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>@nox.session
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>@nox.parametrize(&quot;python&quot;, PYTHON_VERSIONS)
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>def use_audit(session: nox.Session) -&gt; None:
@@ -881,7 +928,7 @@ session.run(&quot;bandit&quot;, &quot;-r&quot;, *args, env=ENV)
    however you can overwrite those by specifying <code>--</code> after a session and then
    specifying the files you want (example: <code>nox -s use_audit -- noxfile.py</code>)</li>
 </ul>
-<h2 id="generate-the-html-documentation">Generate the HTML Documentation</h2>
+<h2 id="generate-the-html-documentation">Generate the HTML Documentation<a class="headerlink" href="#generate-the-html-documentation" title="Permanent link">&para;</a></h2>
 <p>Using the <strong>nox</strong> mechanism the function to generate this HTML documentation
 is following:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
@@ -924,7 +971,7 @@ is following:</p>
 <li>Finally the HTML is built with <code>session run</code></li>
 <li>You will then find the result in the local folder <strong>site</strong>.  </li>
 </ul>
-<h2 id="unittests-and-benchmarking-with-pytest">Unittests and benchmarking with pytest</h2>
+<h2 id="unittests-and-benchmarking-with-pytest">Unittests and benchmarking with pytest<a class="headerlink" href="#unittests-and-benchmarking-with-pytest" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
@@ -984,7 +1031,7 @@ is following:</p>
 <li>A JUnit compatible XML is generate.</li>
 <li>The build does fail when a test does fail or when the code coverage is below expected limit.</li>
 </ul>
-<h2 id="creating-the-packages">Creating the packages</h2>
+<h2 id="creating-the-packages">Creating the packages<a class="headerlink" href="#creating-the-packages" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
 <span class="normal"><a href="#__codelineno-9-2">2</a></span>
 <span class="normal"><a href="#__codelineno-9-3">3</a></span>
@@ -1009,7 +1056,7 @@ is following:</p>
 <li>with <strong>bdist_wheel</strong> you generate the binary package ensuring all dependencies are installed too (when given).</li>
 <li>you will find the packages in folder <strong>dist</strong>.</li>
 </ul>
-<h2 id="deploying-the-packages">Deploying the packages</h2>
+<h2 id="deploying-the-packages">Deploying the packages<a class="headerlink" href="#deploying-the-packages" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
@@ -1039,7 +1086,7 @@ is following:</p>
 <li>those variables have to be set into the secrets section of the repository at Github that the Github action are
    able to inject them into the build process.</li>
 </ul>
-<h2 id="cleanup">Cleanup</h2>
+<h2 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
 <span class="normal"><a href="#__codelineno-11-2">2</a></span>
 <span class="normal"><a href="#__codelineno-11-3">3</a></span>
@@ -1063,16 +1110,16 @@ is following:</p>
 <li>The <code>python=False</code> disables the creation of a virtual environment.</li>
 <li>Of course the <strong>clean</strong> session is not in the list of the default sessions.</li>
 </ul>
-<h2 id="links">Links</h2>
-<h3 id="the-build-tool-itself">The build tool itself</h3>
+<h2 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h2>
+<h3 id="the-build-tool-itself">The build tool itself<a class="headerlink" href="#the-build-tool-itself" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://nox.thea.codes/en/stable/">https://nox.thea.codes/en/stable/</a></li>
 </ul>
-<h3 id="code-formatting">Code formatting</h3>
+<h3 id="code-formatting">Code formatting<a class="headerlink" href="#code-formatting" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://black.readthedocs.io/en/stable/">https://black.readthedocs.io/en/stable/</a></li>
 </ul>
-<h3 id="static-code-analysis">Static code analysis</h3>
+<h3 id="static-code-analysis">Static code analysis<a class="headerlink" href="#static-code-analysis" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://flake8.pycqa.org/en/latest/">https://flake8.pycqa.org/en/latest/</a></li>
 <li><a href="https://github.com/PyCQA/flake8-import-order">https://github.com/PyCQA/flake8-import-order</a></li>
@@ -1083,16 +1130,16 @@ is following:</p>
 <li><a href="https://github.com/trailofbits/pip-audit">https://github.com/trailofbits/pip-audit</a></li>
 <li><a href="https://radon.readthedocs.io/en/latest/">https://radon.readthedocs.io/en/latest/</a></li>
 </ul>
-<h3 id="documentation">Documentation</h3>
+<h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://www.mkdocs.org">https://www.mkdocs.org</a></li>
 </ul>
-<h3 id="unittesting-and-benchmarking">Unittesting and Benchmarking</h3>
+<h3 id="unittesting-and-benchmarking">Unittesting and Benchmarking<a class="headerlink" href="#unittesting-and-benchmarking" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://docs.pytest.org/en/7.1.x/">https://docs.pytest.org/en/7.1.x/</a></li>
 <li><a href="https://pytest-benchmark.readthedocs.io/en/latest/">https://pytest-benchmark.readthedocs.io/en/latest/</a></li>
 </ul>
-<h3 id="packages-and-deployment">Packages and Deployment</h3>
+<h3 id="packages-and-deployment">Packages and Deployment<a class="headerlink" href="#packages-and-deployment" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/">https://packaging.python.org/en/latest/tutorials/packaging-projects/</a></li>
 <li><a href="https://realpython.com/pypi-publish-python-package/">https://realpython.com/pypi-publish-python-package/</a></li>
