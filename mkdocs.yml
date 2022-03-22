@@ -1,7 +1,11 @@
 site_name: reponsive-data
+repo_url: https://github.com/thomas-lehmann-private/responsive-data
+site_author: Thomas Lehmann
+site_description: Library for making data responsive
 
 nav:
   - index.md
+  - design.md
   - responsive-data-handling.md
   - subject-observer.md
   - the-build-process.md
@@ -19,6 +23,8 @@ markdown_extensions:
       base_path:
         - docs/examples
   - pymdownx.superfences
+  - toc:
+      permalink: True
 
 plugins:
   - search

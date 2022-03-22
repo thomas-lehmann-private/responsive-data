@@ -134,6 +134,14 @@ class ListWrapper(Subject, Observer):
         super().__init__()
         self.obj = obj
 
+    def __repr__(self) -> str:
+        """Get string representation of wrapped data.
+
+        Returns:
+            string representation of wrapped data.
+        """
+        return f"{self.obj}"
+
     def append(self, value):
         """Appending a value to the list."""
         self.obj.append(value)
@@ -160,6 +168,10 @@ class ListWrapper(Subject, Observer):
     def __getitem__(self, index):
         """Get value at given index."""
         return self.obj[index]
+
+    def __len__(self):
+        """Get length of list."""
+        return len(self.obj)
 
     def replace(self, obj):
         """Replacing content."""
