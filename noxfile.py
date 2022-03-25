@@ -104,7 +104,7 @@ def use_pylint(session: nox.Session) -> None:
         session (nox.Session): nox session.
     """
     args = session.posargs or LOCATIONS
-    session.install("pylint", "nox")
+    session.install("pylint", "nox", "parameterized")
     session.run("pylint", "--enable-all-extensions", *args, env=ENV)
 
 
@@ -188,7 +188,12 @@ def use_pytest(session: nox.Session) -> None:
         session (nox.Session): nox session.
     """
     session.install(
-        "pytest", "pytest-cov", "pytest-random-order", "pytest-benchmark", "pytest-sugar"
+        "pytest",
+        "pytest-cov",
+        "pytest-random-order",
+        "pytest-benchmark",
+        "pytest-sugar",
+        "parameterized",
     )
     session.install("-r", "requirements.txt")
     session.run(

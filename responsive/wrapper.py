@@ -30,27 +30,19 @@ from responsive.subject import Subject
 
 
 class DictWrapper(Subject, Observer):
-    """Wrapper for a dictionary object.
+    """Wrapper for a dictionary object."""
 
-    Example:
-
-        >>> from responsive.observer import DefaultObserver
-        >>> observer = DefaultObserver()
-        >>> book = DictWrapper({"author": "", "title": ""})
-        >>> book.add_observer(observer)
-        >>> book.author = "Raymond Chandler"
-        >>> book.title = "The Big Sleep"
-        >>> observer.get_count_updates()
-        2
-    """
-
-    def __init__(self, obj: object):
+    def __init__(self, obj: object, make_responsive: callable, root: Subject = None):
         """Initialize wrapper.
 
         Args:
             obj (objec): object to wrap.
+            make_responsive (callable): function to make responsive
+            root (Subject): root object receiving notifications
         """
         super().__init__()
+        self.make_responsive = make_responsive
+        self.root = root
         self.obj = obj
 
     def __repr__(self) -> str:
@@ -69,23 +61,25 @@ class DictWrapper(Subject, Observer):
             value (Any): value of the attribute.
         """
         if "obj" in self.__dict__:
+            print(f"--- Trying to change {name}, root is {self.root} ---")
             if isinstance(self.obj, dict):
-                if isinstance(value, list):
-                    self.obj[name].replace(value)
-                else:
-                    old_value = self.obj[name]
-                    self.obj[name] = value
-                    self.notify(
-                        id=id(self),
-                        context=Context.DICTIONARY,
-                        name=name,
-                        old=old_value,
-                        new=value,
-                        operation=Operation.VALUE_CHANGED,
-                    )
+                old_value = self.obj[name]
+                self.obj[name] = self.make_responsive(
+                    value, root=self.root if self.root is not None else self
+                )
+                self.notify(
+                    id=id(self),
+                    context=Context.DICTIONARY,
+                    name=name,
+                    old=old_value,
+                    new=value,
+                    operation=Operation.VALUE_CHANGED,
+                )
             else:
                 old_value = self.obj.__dict__[name]
-                self.obj.__dict__[name] = value
+                self.obj.__dict__[name] = self.make_responsive(
+                    value, root=self.root if self.root is not None else self
+                )
                 self.notify(
                     id=id(self),
                     context=Context.CLASS,
@@ -121,17 +115,42 @@ class DictWrapper(Subject, Observer):
         """
         self.notify(*args, **kwargs)
 
+    def __eq__(self, other: object) -> bool:
+        """Comparing two lists.
+
+        Args:
+            other (object): another object to compare with
+
+        Returns:
+            true when equal, otherwise false.
+        """
+        if isinstance(other, dict):
+            return self.obj.__eq__(other)
+
+        if isinstance(other, DictWrapper):
+            return self.obj.__eq__(other.obj)
+
+        return False
+
+    def __hash__(self):
+        """Calculating hash of underlying object."""
+        return hash(self.obj)
+
 
 class ListWrapper(Subject, Observer):
     """Wrapper for a dictionary object."""
 
-    def __init__(self, obj: object):
+    def __init__(self, obj: object, make_responsive: callable, root: Subject = None):
         """Initialize wrapper.
 
         Args:
             obj (objec): object to wrap.
+            make_responsive (callable): function to make responsive
+            root (Subject): root object receiving notifications
         """
         super().__init__()
+        self.make_responsive = make_responsive
+        self.root = root
         self.obj = obj
 
     def __repr__(self) -> str:
@@ -155,7 +174,9 @@ class ListWrapper(Subject, Observer):
     def __setitem__(self, index, value):
         """Change value at given index."""
         old_value = self.obj[index]
-        self.obj[index] = value
+        self.obj[index] = self.make_responsive(
+            value, root=self.root if self.root is not None else self
+        )
         self.notify(
             id=id(self),
             context=Context.LIST,
@@ -172,12 +193,6 @@ class ListWrapper(Subject, Observer):
     def __len__(self):
         """Get length of list."""
         return len(self.obj)
-
-    def replace(self, obj):
-        """Replacing content."""
-        if isinstance(obj, list):
-            self.obj = obj
-            self.notify(id=id(self), context=Context.LIST, operation=Operation.VALUE_CHANGED)
 
     def update(self, subject: object, *args: Any, **kwargs: Any):
         """Called when related subject has changed.
@@ -205,3 +220,7 @@ class ListWrapper(Subject, Observer):
             return self.obj.__eq__(other.obj)
 
         return False
+
+    def __hash__(self):
+        """Calculating hash of underlying object."""
+        return hash(self.obj)

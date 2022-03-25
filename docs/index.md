@@ -9,13 +9,14 @@ The next code should demonstrate the basic functionality:
 The output looks like following (you have to scroll a bit to see whole output).
 
 ```bash
-subject with id 4315315648 has notified with () and {'id': 4315315648, 'context': <Context.DICTIONARY: 2>, 'name': 'some_str', 'old': 'default string', 'new': 'another string', 'operation': <Operation.VALUE_CHANGED: 1>}
-subject with id 4315315648 has notified with () and {'id': 4315315648, 'context': <Context.DICTIONARY: 2>, 'name': 'some_int', 'old': 1234567890, 'new': 9876543210, 'operation': <Operation.VALUE_CHANGED: 1>}
-subject with id 4315315648 has notified with () and {'id': 4315311712, 'context': <Context.LIST: 3>, 'new': 6, 'operation': <Operation.VALUE_ADDED: 2>}
-subject with id 4315315648 has notified with () and {'id': 4315311712, 'context': <Context.LIST: 3>, 'old': 3, 'operation': <Operation.VALUE_REMOVED: 3>}
-subject with id 4315315648 has notified with () and {'id': 4315311712, 'context': <Context.LIST: 3>, 'index': 2, 'old': 4, 'new': 7, 'operation': <Operation.VALUE_CHANGED: 1>}
-subject with id 4315315648 has notified with () and {'id': 4315311712, 'context': <Context.LIST: 3>, 'operation': <Operation.VALUE_CHANGED: 1>}
-subject with id 4315315648 has notified with () and {'id': 4315310560, 'context': <Context.DICTIONARY: 2>, 'name': 'some_other_str', 'old': 'default other string', 'new': 'yet another string', 'operation': <Operation.VALUE_CHANGED: 1>}
+subject with id 4309460944 has notified with () and {'id': 4309460944, 'context': <Context.DICTIONARY: 2>, 'name': 'some_str', 'old': 'string 1', 'new': 'another string', 'operation': <Operation.VALUE_CHANGED: 1>}
+subject with id 4309460944 has notified with () and {'id': 4309460944, 'context': <Context.DICTIONARY: 2>, 'name': 'some_int', 'old': 1234567890, 'new': 9876543210, 'operation': <Operation.VALUE_CHANGED: 1>}
+subject with id 4309460944 has notified with () and {'id': 4309463248, 'context': <Context.DICTIONARY: 2>, 'name': 'inner_str', 'old': 'string 2', 'new': 'just another string', 'operation': <Operation.VALUE_CHANGED: 1>}
+subject with id 4309460944 has notified with () and {'id': 4309461616, 'context': <Context.LIST: 3>, 'new': 6, 'operation': <Operation.VALUE_ADDED: 2>}
+subject with id 4309460944 has notified with () and {'id': 4309461616, 'context': <Context.LIST: 3>, 'old': 3, 'operation': <Operation.VALUE_REMOVED: 3>}
+subject with id 4309460944 has notified with () and {'id': 4309461616, 'context': <Context.LIST: 3>, 'index': 2, 'old': 4, 'new': 7, 'operation': <Operation.VALUE_CHANGED: 1>}
+subject with id 4309460944 has notified with () and {'id': 4309461616, 'context': <Context.LIST: 3>, 'operation': <Operation.VALUE_CHANGED: 1>}
+subject with id 4309460944 has notified with () and {'id': 4309453936, 'context': <Context.DICTIONARY: 2>, 'name': 'some_other_str', 'old': 'string 3', 'new': 'yet another string', 'operation': <Operation.VALUE_CHANGED: 1>}
 ```
 
 For detailed documentations please follow the links:

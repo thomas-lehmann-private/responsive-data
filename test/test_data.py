@@ -58,8 +58,11 @@ class DataTest(TestCase):
 
     def test_responsiveness(self):
         """Testing responsiveness."""
+        original_data = SomeData()
+        original_data.some_list.append({"inner_str": "hello world 3"})
+
         observer = DefaultObserver()
-        some_data = make_responsive(SomeData())
+        some_data = make_responsive(original_data)
         some_data.add_observer(observer)
 
         # data changed at depth 1
@@ -67,12 +70,16 @@ class DataTest(TestCase):
         some_data.some_int = 12345678
         some_data.some_other_data.some_str_2 = "hello world 2"
         some_data.some_other_data.some_int_2 = 87654321
+        some_data.some_list[-1].inner_str = "hello world 4"
 
-        self.assertEqual(observer.get_count_updates(), 4)
+        self.assertEqual(observer.get_count_updates(), 5)
         self.assertEqual(some_data.some_str, "hello world 1")
         self.assertEqual(some_data.some_int, 12345678)
         self.assertEqual(some_data.some_other_data.some_str_2, "hello world 2")
         self.assertEqual(some_data.some_other_data.some_int_2, 87654321)
+        self.assertEqual(
+            some_data.some_list[-1].inner_str, "hello world 4"  # pylint: disable=no-member
+        )
 
         notifications = list(observer)
 
@@ -106,6 +113,19 @@ class DataTest(TestCase):
             some_data,
             (),
             self.create_kwargs(Context.CLASS, Operation.VALUE_CHANGED, "some_int_2", 0, 87654321),
+        )
+
+        self.assert_notification(
+            notifications[4],
+            some_data,
+            (),
+            self.create_kwargs(
+                Context.DICTIONARY,
+                Operation.VALUE_CHANGED,
+                "inner_str",
+                "hello world 3",
+                "hello world 4",
+            ),
         )
 
     def test_set_and_get_string_value(self):

@@ -25,6 +25,7 @@ THE SOFTWARE.
 # pylint: disable=compare-to-zero,no-self-use
 from unittest import TestCase
 
+from responsive.data import make_responsive
 from responsive.wrapper import ListWrapper
 
 
@@ -33,13 +34,13 @@ class ListWrapperTest(TestCase):
 
     def test_len(self):
         """Testing length of list."""
-        wrapper = ListWrapper([1, 2, 3, 4])
+        wrapper = ListWrapper([1, 2, 3, 4], make_responsive)
         self.assertEqual(len(wrapper), 4)
 
     def test_set_and_get_by_index(self):
         """Testing __setitem__ and __getitem__."""
         data = [1, 2, 3, 4]
-        wrapper = ListWrapper([1, 2, 3, 4])
+        wrapper = ListWrapper([1, 2, 3, 4], make_responsive)
         wrapper[2] = 9
         self.assertEqual(wrapper[2], 9)
         self.assertEqual(data, [1, 2, 3, 4])
@@ -47,14 +48,14 @@ class ListWrapperTest(TestCase):
     def test_eq(self):
         """Testing __eq__."""
         data = [1, 2, 3, 4]
-        wrapper = ListWrapper(data)
+        wrapper = ListWrapper(data, make_responsive)
         self.assertEqual(wrapper, data)
         self.assertNotEqual(wrapper, 1234)
 
     def test_iter(self):
         """Testing in and not in."""
         data = [1, 2, 3, 4]
-        wrapper = ListWrapper(data)
+        wrapper = ListWrapper(data, make_responsive)
         self.assertTrue(2 in wrapper)
         self.assertTrue(5 not in wrapper)
         self.assertEqual(list(wrapper), data)
