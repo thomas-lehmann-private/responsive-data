@@ -47,9 +47,9 @@ class TestResponsiveness(TestCase):
     )
     def test_responsiveness_for_pure_dict(self, filename, new_value):
         """Testing responsiveness for pur dictionaries."""
-        with open(
+        with open(  # skipcq: PTC-W6004
             os.path.join("test", "resources", filename), encoding="utf-8"
-        ) as handle:  # skipcq: PTC-W6004
+        ) as handle:
             observer = DefaultObserver()
 
             data = json.loads(handle.read())
@@ -83,9 +83,9 @@ class TestResponsiveness(TestCase):
     )
     def test_responsiveness_for_pure_list(self, filename, new_value):
         """Testing responsiveness for pur lists."""
-        with open(
+        with open(  # skipcq: PTC-W6004
             os.path.join("test", "resources", filename), encoding="utf-8"
-        ) as handle:  # skipcq: PTC-W6004
+        ) as handle:
             observer = DefaultObserver()
 
             data = json.loads(handle.read())

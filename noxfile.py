@@ -175,7 +175,7 @@ def use_mkdocs(session: nox.Session) -> None:
         "mkdocs-jupyter",
         "mkdocs-autolinks-plugin",
         "jupyter",
-        "jinja2==3.0.0"
+        "jinja2==3.0.0",
     )
     session.run("mkdocs", "build", env=ENV)
 
