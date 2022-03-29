@@ -56,78 +56,6 @@ class SomeData:
 class DataTest(TestCase):
     """Testing data functions."""
 
-    def test_responsiveness(self):
-        """Testing responsiveness."""
-        original_data = SomeData()
-        original_data.some_list.append({"inner_str": "hello world 3"})
-
-        observer = DefaultObserver()
-        some_data = make_responsive(original_data)
-        some_data.add_observer(observer)
-
-        # data changed at depth 1
-        some_data.some_str = "hello world 1"
-        some_data.some_int = 12345678
-        some_data.some_other_data.some_str_2 = "hello world 2"
-        some_data.some_other_data.some_int_2 = 87654321
-        some_data.some_list[-1].inner_str = "hello world 4"
-
-        self.assertEqual(observer.get_count_updates(), 5)
-        self.assertEqual(some_data.some_str, "hello world 1")
-        self.assertEqual(some_data.some_int, 12345678)
-        self.assertEqual(some_data.some_other_data.some_str_2, "hello world 2")
-        self.assertEqual(some_data.some_other_data.some_int_2, 87654321)
-        self.assertEqual(
-            some_data.some_list[-1].inner_str, "hello world 4"  # pylint: disable=no-member
-        )
-
-        notifications = list(observer)
-
-        self.assert_notification(
-            notifications[0],
-            some_data,
-            (),
-            self.create_kwargs(
-                Context.CLASS, Operation.VALUE_CHANGED, "some_str", "", "hello world 1"
-            ),
-        )
-
-        self.assert_notification(
-            notifications[1],
-            some_data,
-            (),
-            self.create_kwargs(Context.CLASS, Operation.VALUE_CHANGED, "some_int", 0, 12345678),
-        )
-
-        self.assert_notification(
-            notifications[2],
-            some_data,
-            (),
-            self.create_kwargs(
-                Context.CLASS, Operation.VALUE_CHANGED, "some_str_2", "", "hello world 2"
-            ),
-        )
-
-        self.assert_notification(
-            notifications[3],
-            some_data,
-            (),
-            self.create_kwargs(Context.CLASS, Operation.VALUE_CHANGED, "some_int_2", 0, 87654321),
-        )
-
-        self.assert_notification(
-            notifications[4],
-            some_data,
-            (),
-            self.create_kwargs(
-                Context.DICTIONARY,
-                Operation.VALUE_CHANGED,
-                "inner_str",
-                "hello world 3",
-                "hello world 4",
-            ),
-        )
-
     def test_set_and_get_string_value(self):
         """Test set and get of a string value."""
         some_data = make_responsive(SomeData())
@@ -148,17 +76,3 @@ class DataTest(TestCase):
             self.assertEqual(some_data.some_list, some_data.some_list)
             self.assertNotEqual(some_data.some_list, 1234567890)
             self.assertEqual(some_data.some_list[-1], 6)
-
-    @staticmethod
-    def create_kwargs(
-        context: Context, operation: Operation, name: str, old: Any, new: Any
-    ) -> dict:
-        """Create kwargs representing part of the notification."""
-        return {"name": name, "old": old, "new": new, "context": context, "operation": operation}
-
-    def assert_notification(self, notification: tuple, subject: Subject, args: tuple, kwargs: dict):
-        """Assert notification values."""
-        print(notification)
-        self.assertEqual(notification[0], subject)
-        self.assertEqual(notification[1], args)
-        self.assertDictEqual(filter_dict_entries(notification[2], ["id"]), kwargs)

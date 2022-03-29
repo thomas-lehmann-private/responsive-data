@@ -105,6 +105,10 @@ class DictWrapper(Subject, Observer):
 
         return self.obj.__dict__[name]
 
+    def __len__(self):
+        """Get length of dictionary."""
+        return len(self.obj)
+
     def update(self, subject: object, *args: Any, **kwargs: Any):
         """Called when related subject has changed.
 
@@ -134,7 +138,7 @@ class DictWrapper(Subject, Observer):
 
     def __hash__(self):
         """Calculating hash of underlying object."""
-        return hash(self.obj)
+        return hash(tuple(sorted(self.obj.items())))
 
 
 class ListWrapper(Subject, Observer):

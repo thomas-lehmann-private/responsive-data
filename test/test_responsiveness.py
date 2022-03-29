@@ -47,9 +47,7 @@ class TestResponsiveness(TestCase):
     )
     def test_responsiveness_for_pure_dict(self, filename, new_value):
         """Testing responsiveness for pur dictionaries."""
-        with open(  # skipcq: PTC-W6004
-            os.path.join("test", "resources", filename), encoding="utf-8"
-        ) as handle:
+        with open(os.path.join("test", "resources", filename), encoding="utf-8") as handle:
             observer = DefaultObserver()
 
             data = json.loads(handle.read())
@@ -79,13 +77,12 @@ class TestResponsiveness(TestCase):
         [
             ["pure_list_with_string.json", "other string"],
             ["pure_list_with_list.json", ["other string"]],
+            ["pure_list_with_pure_dict.json", {"value": "other string"}],
         ]
     )
     def test_responsiveness_for_pure_list(self, filename, new_value):
         """Testing responsiveness for pur lists."""
-        with open(  # skipcq: PTC-W6004
-            os.path.join("test", "resources", filename), encoding="utf-8"
-        ) as handle:
+        with open(os.path.join("test", "resources", filename), encoding="utf-8") as handle:
             observer = DefaultObserver()
 
             data = json.loads(handle.read())
@@ -95,8 +92,15 @@ class TestResponsiveness(TestCase):
             old_value = responsive_data[0]
             responsive_data[0] = new_value
 
-            self.assertEqual(observer.get_count_updates(), 1)
-            self.assertEqual(responsive_data[0], new_value)
+            if filename.find("with_pure_dict") >= 0:
+                self.assertEqual(responsive_data[0], new_value)
+                responsive_data[0].value = "yet another string"
+
+                self.assertEqual(observer.get_count_updates(), 2)
+                self.assertEqual(responsive_data[0].value, "yet another string")
+            else:
+                self.assertEqual(observer.get_count_updates(), 1)
+                self.assertEqual(responsive_data[0], new_value)
 
             self.assertEqual(list(observer)[0][2]["old"], old_value)
             self.assertEqual(list(observer)[0][2]["new"], new_value)
