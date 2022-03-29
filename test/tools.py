@@ -24,7 +24,7 @@ THE SOFTWARE.
 """
 
 
-def filter_dict_entries(obj: dict, keys: list[str]) -> dict:
+def filter_dict_entries(obj: dict, keys: list[str]) -> dict:  # noqa
     """Filter out entries with given keys.
 
     Args:

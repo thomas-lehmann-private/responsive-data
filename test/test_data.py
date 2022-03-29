@@ -23,14 +23,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 # pylint: disable=too-few-public-methods
-from test.tools import filter_dict_entries
-from typing import Any
 from unittest import TestCase
 
-from responsive.constants import Context, Operation
 from responsive.data import make_responsive
-from responsive.observer import DefaultObserver
-from responsive.subject import Subject
 
 
 class SomeOtherData:
@@ -60,10 +55,14 @@ class DataTest(TestCase):
         """Test set and get of a string value."""
         some_data = make_responsive(SomeData())
         some_data.some_str = "hello world 1"
-        self.assertEqual(some_data.some_str, "hello world 1")
+        some_data.some_int = 1234567890
+        some_data.some_other_data.some_str_2 = "hello world 2"
+        some_data.some_other_data.some_int_2 = 9876543210
 
-        some_data = make_responsive({"some_str": "hello world 2"})
-        self.assertEqual(some_data.some_str, "hello world 2")
+        self.assertEqual(some_data.some_str, "hello world 1")
+        self.assertEqual(some_data.some_int, 1234567890)
+        self.assertEqual(some_data.some_other_data.some_str_2, "hello world 2")
+        self.assertEqual(some_data.some_other_data.some_int_2, 9876543210)
 
     def test_set_and_get_list_values(self):
         """Test set and get of list values."""
@@ -72,6 +71,7 @@ class DataTest(TestCase):
             some_data.some_list.append(6)
             some_data.some_list.remove(2)
             some_data.some_list[-2] = 9
+
             self.assertEqual(some_data.some_list, [1, 3, 4, 9, 6])
             self.assertEqual(some_data.some_list, some_data.some_list)
             self.assertNotEqual(some_data.some_list, 1234567890)
