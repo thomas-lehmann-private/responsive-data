@@ -24,7 +24,8 @@ THE SOFTWARE.
 """
 from unittest import TestCase
 
-from responsive.observer import Observer, OutputObserver
+from responsive.observer import DefaultObserver, Observer, OutputObserver
+from responsive.subject import Subject
 
 
 class ObserverTest(TestCase):
@@ -48,3 +49,17 @@ class ObserverTest(TestCase):
 
         self.assertEqual(len(messages), 1)
         self.assertTrue(messages[0].find("(1, 2, 3)") >= 0)
+
+    def test_default_observer(self):
+        """Testing default observer."""
+        observer = DefaultObserver()
+        subject = Subject()
+        subject.add_observer(observer)
+        subject.notify("hello", add=" world")
+
+        self.assertEqual(observer.get_count_updates(), 1)
+        self.assertEqual(list(observer)[0][1], ("hello",))
+        self.assertDictEqual(list(observer)[0][2], {"add": " world"})
+
+        observer.clear()
+        self.assertEqual(observer.get_count_updates(), 0)

@@ -53,6 +53,15 @@ class SubjectTest(TestCase):
         for observer in observers:
             self.assertEqual(observer.get_count_updates(), 1)
 
+    def test_adding_same_observer_once_only(self):
+        """Ensure the same observer is added once only."""
+        observer = DefaultObserver()
+        subject = Subject()
+        subject.add_observer(observer)
+        subject.add_observer(observer)
+        subject.notify()
+        self.assertEqual(observer.get_count_updates(), 1)
+
     def test_observer_with_special_interest(self):
         """Testing filter mechanism."""
         observer = DefaultObserver()

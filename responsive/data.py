@@ -36,17 +36,16 @@ def __make_responsive_for_list(root: object, parent: list) -> None:
     """
     for index, value in enumerate(parent):
         current_type = type(value)
-        if str(current_type).startswith("<class"):
-            if not current_type.__module__ == "builtins" or isinstance(value, dict):
-                wrapped_value = DictWrapper(value, make_responsive, root=root)
-                __make_responsive_for_dict(root, value)
-                wrapped_value.add_observer(root)
-                parent[index] = wrapped_value
-            elif isinstance(value, list):
-                wrapped_value = ListWrapper(value, make_responsive, root=root)
-                __make_responsive_for_list(root, value)
-                wrapped_value.add_observer(root)
-                parent[index] = wrapped_value
+        if not current_type.__module__ == "builtins" or isinstance(value, dict):
+            wrapped_value = DictWrapper(value, make_responsive, root=root)
+            __make_responsive_for_dict(root, value)
+            wrapped_value.add_observer(root)
+            parent[index] = wrapped_value
+        elif isinstance(value, list):
+            wrapped_value = ListWrapper(value, make_responsive, root=root)
+            __make_responsive_for_list(root, value)
+            wrapped_value.add_observer(root)
+            parent[index] = wrapped_value
 
 
 def __make_responsive_for_dict(root: object, parent: object) -> None:
@@ -60,17 +59,16 @@ def __make_responsive_for_dict(root: object, parent: object) -> None:
 
     for key, value in the_dict.items():
         current_type = type(value)
-        if str(current_type).startswith("<class"):
-            if not current_type.__module__ == "builtins" or isinstance(value, dict):
-                wrapped_value = DictWrapper(value, make_responsive, root=root)
-                __make_responsive_for_dict(root, value)
-                wrapped_value.add_observer(root)
-                the_dict[key] = wrapped_value
-            elif isinstance(value, list):
-                wrapped_value = ListWrapper(value, make_responsive, root=root)
-                __make_responsive_for_list(root, value)
-                wrapped_value.add_observer(root)
-                the_dict[key] = wrapped_value
+        if not current_type.__module__ == "builtins" or isinstance(value, dict):
+            wrapped_value = DictWrapper(value, make_responsive, root=root)
+            __make_responsive_for_dict(root, value)
+            wrapped_value.add_observer(root)
+            the_dict[key] = wrapped_value
+        elif isinstance(value, list):
+            wrapped_value = ListWrapper(value, make_responsive, root=root)
+            __make_responsive_for_list(root, value)
+            wrapped_value.add_observer(root)
+            the_dict[key] = wrapped_value
 
 
 def __is_class(obj):
