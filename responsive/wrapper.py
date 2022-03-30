@@ -61,7 +61,6 @@ class DictWrapper(Subject, Observer):
             value (Any): value of the attribute.
         """
         if "obj" in self.__dict__:
-            print(f"--- Trying to change {name}, root is {self.root} ---")
             if isinstance(self.obj, dict):
                 old_value = self.obj[name]
                 self.obj[name] = self.make_responsive(
