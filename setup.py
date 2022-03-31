@@ -34,7 +34,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="responsive-data",
-    version="1.0.0",
+    version="1.0.2",
     description="Framework for converting data to be responsive",
     long_description=README,
     long_description_content_type="text/markdown",

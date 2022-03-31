@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: 'Publish on PYPI'
     steps:
       - name: Checkout
         uses: actions/checkout@v2           # checks out of repository and download it to the runner
