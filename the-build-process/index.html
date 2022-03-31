@@ -1087,7 +1087,11 @@ is following:</p>
    able to inject them into the build process.</li>
 <li>Following important notes:</li>
 <li>you cannot upload twice the same version</li>
-<li>keep in mind that the Github action has to use the concrete environment that does provide the secrets</li>
+<li>keep in mind that the Github action<ul>
+<li>has to use the concrete environment that does provide the secrets</li>
+<li>and als has to adjust the environment variables; the variables for the environment are not automatically used.</li>
+</ul>
+</li>
 </ul>
 <h2 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
