@@ -234,7 +234,7 @@ def deploy_packages(session: nox.Session) -> None:
         session (nox.Session): nox session.
     """
     session.install("twine")
-    session.run("twine", "upload", "--repository-url=https://test.pypi.org/legacy/", "dist/*")
+    session.run("twine", "upload", "dist/*")
 
 
 @nox.session(python=False)

@@ -310,6 +310,7 @@ def deploy_packages(session: nox.Session) -> None:
    - keep in mind that the Github action
        - has to use the concrete environment that does provide the secrets
        - and als has to adjust the environment variables; the variables for the environment are not automatically used.
+   - The repository URL for test is https://test.pypi.org/legacy; for the production repository the URL is https://pypi.org/
 
 
 ## Cleanup
