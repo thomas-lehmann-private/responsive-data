@@ -3,6 +3,7 @@
 [![build](https://github.com/thomas-lehmann-private/responsive-data/actions/workflows/build-action.yml/badge.svg)](https://github.com/thomas-lehmann-private/responsive-data/actions)
 [![documentation](https://img.shields.io/badge/documentation-ok-%2300ff00)](https://thomas-lehmann-private.github.io/responsive-data)
 ![GitHub](https://img.shields.io/github/license/thomas-lehmann-private/responsive-data)
+[![PyPI version](https://badge.fury.io/py/responsive-data.svg)](https://badge.fury.io/py/responsive-data)
 
 
 [![codecov](https://codecov.io/gh/thomas-lehmann-private/responsive-data/branch/main/graph/badge.svg?token=QD9X5M8ATN)](https://codecov.io/gh/thomas-lehmann-private/responsive-data)
@@ -82,4 +83,5 @@ nox
  ## Interesting Links
 
   - https://test.pypi.org/project/responsive-data/
+  - https://pypi.org/project/responsive-data/
 
