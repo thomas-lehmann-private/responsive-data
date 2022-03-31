@@ -1,0 +1,27 @@
+name: release-action
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2           # checks out of repository and download it to the runner
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.10
+          architecture: 'x64'
+      - run: pip3 install nox
+      - run: nox -s create_packages
+      - run: nox -s deploy_packages
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+              dist/responsive*.whl
+              dist/responsive*.tar.gz
