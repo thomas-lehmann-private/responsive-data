@@ -307,7 +307,10 @@ def deploy_packages(session: nox.Session) -> None:
    able to inject them into the build process.
  - Following important notes:
    - you cannot upload twice the same version
-   - keep in mind that the Github action has to use the concrete environment that does provide the secrets
+   - keep in mind that the Github action
+       - has to use the concrete environment that does provide the secrets
+       - and als has to adjust the environment variables; the variables for the environment are not automatically used.
+
 
 ## Cleanup
 
